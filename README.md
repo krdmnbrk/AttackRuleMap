@@ -26,6 +26,8 @@ This project is the result of a simulation conducted in my personal lab environm
 
 The outputs from these tests form the foundation of this repository. It focuses on Windows systems for now. Future updates may include support for additional platforms. 💻
 
+Note: The mapping process is a mix of manual and automatic. It is a time consuming process. But I will still try to update it monthly.
+
 ## 🔄 Sigma Rule Conversion
 To convert Sigma rules into Splunk Search Processing Language (SPL), I used the [sigconverter.io](https://sigconverter.io) locally on Docker. This tool simplifies the process of adapting Sigma rules for use in Splunk by automating the translation process. Users can specify the desired target platform, such as Splunk, Elastic, Kusto or any platform that supported by sigconverter, and the tool generates platform-specific queries based on Sigma's rule definitions.
 
