@@ -8,12 +8,12 @@
       name="description"
       content="Mapping of open-source detection rules and atomic tests."
     />
-    <link rel="icon" type="image/png" href="./assets/images/favicon/" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="./assets/images/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="./assets/images/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/dist/assets/images/favicon/" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/dist/assets/images/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/dist/assets/images/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/assets/images/favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="ARM" />
-    <link rel="manifest" href="./assets/images/favicon//site.webmanifest" />
+    <link rel="manifest" href="/dist/assets/images/favicon//site.webmanifest" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/4.0.1/css/fixedHeader.bootstrap5.min.css">
@@ -21,7 +21,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="ARM - AttackRuleMap" />
     <meta property="og:description" content="Mapping of open-source detection rules and atomic tests." />
-    <meta property="og:image" content="./assets/images/shield-logo.png" />
+    <meta property="og:image" content="/dist/assets/images/og-logo.png" />
     <meta property="og:url" content="https://attackrulemap.netlify.com" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="attackrulemap.netlify.com" />
@@ -29,7 +29,7 @@
 
       @font-face {
         font-family: "Chakra Petch Regular";
-        src: url("./assets/fonts/ChakraPetch-Regular.ttf") format("truetype");
+        src: url("/dist/assets/fonts/ChakraPetch-Regular.ttf") format("truetype");
         font-style: normal;
       }
 
@@ -67,7 +67,7 @@
   <body>
     <div id="main" class="container-fluid p-4">
       <div id="header" class="d-flex align-items-center">
-        <img class="me-3" src="./assets/images/shield-logo.png" alt="" height="65" />
+        <img class="me-3" src="/dist/assets/images/shield-logo.png" alt="" height="65" />
         <div id="header">
           <h2 class="text-start m-0 p-0">AttackRuleMap</h3>
           <p class="text-start text-muted m-0 p-0">
@@ -75,7 +75,7 @@
           </p>
         </div>
         <a class="ms-auto" href="https://github.com/krdmnbrk/AttackRuleMap" target="_blank" rel="noopener noreferrer">
-            <img  src="./assets/images/github-logo.svg" alt="" height="30" />
+            <img  src="/dist/assets/images/github-logo.svg" alt="" height="30" />
         </a>
       </div>
       <hr>
@@ -83,17 +83,17 @@
         <thead>
           <tr>
             <th style="width: 10%;">
-              <img class="pe-1" src="./assets/images/atomic-logo.png" alt="" height="30" />
+              <img class="pe-1" src="/dist/assets/images/atomic-logo.png" alt="" height="30" />
               Atomic Tech ID
             </th>
             <th style="width: 25%;">Atomic Name</th>
             <th style="width: 15%;">GUID</th>
             <th style="width: 25%;">
-              <img class="pe-1"  src="./assets/images/sigma-logo.svg" alt="sigma" height="30" />
+              <img class="pe-1"  src="/dist/assets/images/sigma-logo.svg" alt="sigma" height="30" />
               Sigma Rules
             </th>
             <th style="width: 25%;">
-              <img class="pe-1"  src="./assets/images/splunk-logo.png" alt="splunk" height="25" />
+              <img class="pe-1"  src="/dist/assets/images/splunk-logo.png" alt="splunk" height="25" />
               Rules
             </th>
           </tr>
@@ -7736,12 +7736,12 @@
       </table>
     </div>
 
-    <script src="./assets/js/jquery-3.7.1.js"></script>
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/dataTables.js"></script>
+    <script src="/dist/assets/js/jquery-3.7.1.js"></script>
+    <script src="/dist/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/dist/assets/js/dataTables.js"></script>
 
-    <script src="./assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="./assets/js/fixedHeader.bootstrap5.min.js"></script>
+    <script src="/dist/assets/js/dataTables.fixedHeader.min.js"></script>
+    <script src="/dist/assets/js/fixedHeader.bootstrap5.min.js"></script>
     <script>
       $(document).ready(function () {
         $("#arm-table").DataTable({
