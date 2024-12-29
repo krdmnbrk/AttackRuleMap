@@ -1,0 +1,22 @@
+name: Deploy to Netlify
+on:
+  push:
+    branches:
+      - main  # Only deploy when pushing to the main branch
+    paths:
+      - 'dist/**' 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0.0
+        with:
+          publish-dir: './dist'
+          production-deploy: true
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
