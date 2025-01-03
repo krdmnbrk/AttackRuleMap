@@ -1,15 +1,15 @@
 #  AttackRuleMap
 
-[![Website](https://img.shields.io/badge/Website-attackrulemap.netlify.app-blue)](https://attackrulemap.netlify.app)
+[![Website](https://img.shields.io/badge/Website-attackrulemap.com-blue)](https://attackrulemap.com)
 ![GitHub License](https://img.shields.io/github/license/krdmnbrk/AttackRuleMap?style=flat)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/krdmnbrk/AttackRuleMap/deploy.yml?style=flat)
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fattackrulemap.netlify.app?style=flat)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fattackrulemap.com?style=flat)
 
-<img src="logo.png" alt="atomic red team, detection rules, attackrulemap.netlify.app" width="250">
+<img src="logo.png" alt="atomic red team, detection rules, attackrulemap.com" width="250">
 
 This repository provides a mapping of Atomic Red Team attack simulations to open-source detection rules, such as Sigma and Splunk ESCU.
 
-### [Go to AttackRuleMap](https://attackrulemap.netlify.app)
+### [Go to AttackRuleMap](https://attackrulemap.com)
 
 ## 🎯 Project Purpose
 The goal of this project is to bridge the gap between Atomic Red Team's adversary simulations and open-source detection rules. By doing so, this project aims to help security professionals simulate attacks and evaluate their detection strategies more effectively. 🔒
