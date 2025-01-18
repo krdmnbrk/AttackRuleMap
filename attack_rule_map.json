@@ -1,5 +1,21 @@
 [
   {
+    "tech_id": "T1001.002",
+    "atomic_attack_guid": "4ff61684-ad91-405c-9fbc-048354ff1d07",
+    "atomic_attack_name": "Execute Embedded Script in Image via Steganography",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Linux Base64 Encoded Pipe to Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_base64_execution.yml"
+      },
+      {
+        "rule_name": "Linux Shell Pipe to Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_pipe_shell.yml"
+      }
+    ]
+  },
+  {
     "tech_id": "T1003",
     "atomic_attack_guid": "0b207037-813c-4444-ac3f-b597cf280a67",
     "atomic_attack_name": "Send NTLM Hash with RPC Test Connection",
@@ -646,6 +662,96 @@
     ]
   },
   {
+    "tech_id": "T1003.007",
+    "atomic_attack_guid": "a27418de-bdce-4ebd-b655-38f04842bf0c",
+    "atomic_attack_name": "Capture Passwords with MimiPenguin",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ],
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1003.007",
+    "atomic_attack_guid": "437b2003-a20d-4ed8-834c-4964f24eec63",
+    "atomic_attack_name": "Dump individual process memory with Python (Local)",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Bash Interactive Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_bash_interactive_shell.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1003.007",
+    "atomic_attack_guid": "fa37b633-e097-4415-b2b8-c5bf4c86e423",
+    "atomic_attack_name": "Dump individual process memory with sh on FreeBSD (Local)",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Bash Interactive Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_bash_interactive_shell.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1003.007",
+    "atomic_attack_guid": "7e91138a-8e74-456d-a007-973d67a0bb80",
+    "atomic_attack_name": "Dump individual process memory with sh (Local)",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Bash Interactive Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_bash_interactive_shell.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1003.008",
+    "atomic_attack_guid": "60e860b6-8ae6-49db-ad07-5e73edd88f5d",
+    "atomic_attack_name": "Access /etc/passwd (Local)",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1003.008",
+    "atomic_attack_guid": "3723ab77-c546-403c-8fb4-bb577033b235",
+    "atomic_attack_name": "Access /etc/shadow (Local)",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1005",
+    "atomic_attack_guid": "00cbb875-7ae4-4cf1-b638-e543fd825300",
+    "atomic_attack_name": "Find and dump sqlite databases (Linux)",
+    "platform": "Linux",
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Common Process For Elevation Control",
+        "rule_link": "https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/"
+      }
+    ]
+  },
+  {
     "tech_id": "T1007",
     "atomic_attack_guid": "5f864a3f-8ce9-45c0-812c-bdf7d8aeacc3",
     "atomic_attack_name": "System Service Discovery - net.exe",
@@ -666,6 +772,34 @@
       {
         "rule_name": "Suspicious Tasklist Discovery Command",
         "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules-threat-hunting/windows/process_creation/proc_creation_win_tasklist_basic_execution.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1014",
+    "atomic_attack_guid": "75483ef8-f10f-444a-bf02-62eb0e48db6f",
+    "atomic_attack_name": "Loadable Kernel Module based Rootkit",
+    "platform": "Linux",
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1014",
+    "atomic_attack_guid": "dfb50072-e45a-4c75-a17e-a484809c8553",
+    "atomic_attack_name": "Loadable Kernel Module based Rootkit",
+    "platform": "Linux",
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      },
+      {
+        "rule_name": "Linux Insert Kernel Module Using Insmod Utility",
+        "rule_link": "https://research.splunk.com/endpoint/18b5a1a0-6326-11ec-943a-acde48001122/"
       }
     ]
   },
@@ -738,6 +872,30 @@
       {
         "rule_name": "Harvesting Of Wifi Credentials Via Netsh.EXE",
         "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_netsh_wifi_credential_harvesting.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1018",
+    "atomic_attack_guid": "1a4ebe70-31d0-417b-ade2-ef4cb3e7d0e1",
+    "atomic_attack_name": "Remote System Discovery - ip route",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "System Network Discovery - Linux",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_system_network_discovery.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1018",
+    "atomic_attack_guid": "158bd4dd-6359-40ab-b13c-285b9ef6fa25",
+    "atomic_attack_name": "Remote System Discovery - ip neighbour",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "System Network Discovery - Linux",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_system_network_discovery.yml"
       }
     ]
   },
@@ -1023,6 +1181,24 @@
   },
   {
     "tech_id": "T1027",
+    "atomic_attack_guid": "f45df6be-2e1e-4136-a384-8f18ab3826fb",
+    "atomic_attack_name": "Decode base64 Data into Script",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ],
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Common Process For Elevation Control",
+        "rule_link": "https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1027",
     "atomic_attack_guid": "fad04df1-5229-4185-b016-fb6010cd87ac",
     "atomic_attack_name": "Execution from Compressed JScript File",
     "platform": "Windows",
@@ -1054,6 +1230,54 @@
     ]
   },
   {
+    "tech_id": "T1027.001",
+    "atomic_attack_guid": "ffe2346c-abd5-4b45-a713-bf5f1ebd573a",
+    "atomic_attack_name": "Pad Binary to Change Hash - Linux/macOS dd",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1027.002",
+    "atomic_attack_guid": "f06197f8-ff46-48c2-a0c6-afc1b50665e1",
+    "atomic_attack_name": "Binary packed by UPX, with modified headers (linux)",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1027.002",
+    "atomic_attack_guid": "11c46cd8-e471-450e-acb8-52a1216ae6a4",
+    "atomic_attack_name": "Binary simply packed by UPX (linux)",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1030",
+    "atomic_attack_guid": "ab936c51-10f4-46ce-9144-e02137b2016a",
+    "atomic_attack_name": "Data Transfer Size Limits",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ]
+  },
+  {
     "tech_id": "T1033",
     "atomic_attack_guid": "1392bd0f-5d5a-429e-81d9-eb9d4d4d5b3b",
     "atomic_attack_name": "GetCurrent User with PowerShell Script",
@@ -1078,6 +1302,18 @@
       {
         "rule_name": "Whoami.EXE Execution With Output Option",
         "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_whoami_output.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1036.003",
+    "atomic_attack_guid": "a315bfff-7a98-403b-b442-2ea1b255e556",
+    "atomic_attack_name": "Masquerading as FreeBSD or Linux crond process.",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
       }
     ]
   },
@@ -1157,6 +1393,30 @@
   },
   {
     "tech_id": "T1036.004",
+    "atomic_attack_guid": "ad4b73c2-d6e2-4d8b-9868-4c6f55906e01",
+    "atomic_attack_name": "Hiding a malicious process with bind mounts",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1036.004",
+    "atomic_attack_guid": "f0e3aaea-5cd9-4db6-a077-631dd19b27a8",
+    "atomic_attack_name": "linux rename /proc/pid/comm using prctl",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1036.004",
     "atomic_attack_guid": "f9f2fe59-96f7-4a7d-ba9f-a9783200d4c9",
     "atomic_attack_name": "Creating W32Time similar named service using schtasks",
     "platform": "Windows",
@@ -1198,6 +1458,30 @@
     ]
   },
   {
+    "tech_id": "T1036.005",
+    "atomic_attack_guid": "812c3ab8-94b0-4698-a9bf-9420af23ce24",
+    "atomic_attack_name": "Execute a process from a directory masquerading as the current parent directory.",
+    "platform": "Linux",
+    "splunk_rules": [
+      {
+        "rule_name": "Windows Command and Scripting Interpreter Hunting Path Traversal",
+        "rule_link": "https://research.splunk.com/endpoint/d0026380-b3c4-4da0-ac8e-02790063ff6b/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1036.006",
+    "atomic_attack_guid": "b95ce2eb-a093-4cd8-938d-5258cef656ea",
+    "atomic_attack_name": "Space After Filename",
+    "platform": "Linux",
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Common Process For Elevation Control",
+        "rule_link": "https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/"
+      }
+    ]
+  },
+  {
     "tech_id": "T1036.007",
     "atomic_attack_guid": "c7fa0c3b-b57f-4cba-9118-863bf4e653fc",
     "atomic_attack_name": "File Extension Masquerading",
@@ -1226,6 +1510,30 @@
       {
         "rule_name": "Potentially Suspicious CMD Shell Output Redirect",
         "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_cmd_redirection_susp_folder.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1037.004",
+    "atomic_attack_guid": "126f71af-e1c9-405c-94ef-26a47b16c102",
+    "atomic_attack_name": "rc.local",
+    "platform": "Linux",
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Common Process For Elevation Control",
+        "rule_link": "https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1037.004",
+    "atomic_attack_guid": "c33f3d80-5f04-419b-a13a-854d1cbdbf3a",
+    "atomic_attack_name": "rc.common",
+    "platform": "Linux",
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Common Process For Elevation Control",
+        "rule_link": "https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/"
       }
     ]
   },
@@ -1262,6 +1570,138 @@
       {
         "rule_name": "Copy From Or To Admin Share Or Sysvol Folder",
         "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_susp_copy_lateral_movement.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "b1cbdf8b-6078-48f5-a890-11ea19d7f8e9",
+    "atomic_attack_name": "Packet Capture Linux socket AF_PACKET,SOCK_RAW with BPF filter for UDP with sudo",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ],
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "515575ab-d213-42b1-aa64-ef6a2dd4641b",
+    "atomic_attack_name": "Packet Capture Linux socket AF_INET,SOCK_PACKET,UDP with sudo",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ],
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "7a0895f0-84c1-4adf-8491-a21510b1d4c1",
+    "atomic_attack_name": "Packet Capture Linux socket AF_INET,SOCK_RAW,TCP with sudo",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ],
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "10c710c9-9104-4d5f-8829-5b65391e2a29",
+    "atomic_attack_name": "Packet Capture Linux socket AF_PACKET,SOCK_RAW with sudo",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Execution Of Script Located In Potentially Suspicious Directory",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml"
+      }
+    ],
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "a3a0d4c9-c068-4563-a08d-583bd05b884c",
+    "atomic_attack_name": "Filtered Packet Capture FreeBSD using /dev/bpfN with sudo",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Bash Interactive Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_bash_interactive_shell.yml"
+      }
+    ],
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "e2028771-1bfb-48f5-b5e6-e50ee0942a14",
+    "atomic_attack_name": "Packet Capture FreeBSD using /dev/bpfN with sudo",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Bash Interactive Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_bash_interactive_shell.yml"
+      }
+    ],
+    "splunk_rules": [
+      {
+        "rule_name": "Linux Sudo OR Su Execution",
+        "rule_link": "https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "c93f2492-9ebe-44b5-8b45-36574cccfe67",
+    "atomic_attack_name": "Packet Capture FreeBSD using tshark or tcpdump",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Bash Interactive Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_bash_interactive_shell.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "7fe741f7-b265-4951-a7c7-320889083b3e",
+    "atomic_attack_name": "Packet Capture Linux using tshark or tcpdump",
+    "platform": "Linux",
+    "sigma_rules": [
+      {
+        "rule_name": "Bash Interactive Shell",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_bash_interactive_shell.yml"
       }
     ]
   },

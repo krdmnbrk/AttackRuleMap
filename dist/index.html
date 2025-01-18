@@ -27,8 +27,9 @@
     <meta name="apple-mobile-web-app-title" content="ARM" />
     <link rel="manifest" href="./assets/images/favicon//site.webmanifest" />
 
+
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="./assets/css/dataTables.bootstrap5.min.css"/>
     <link rel="stylesheet" href="./assets/css/buttons.bootstrap5.min.css" />
     <link rel="stylesheet" href="./assets/css/fixedHeader.bootstrap5.min.css" />
 
@@ -87,7 +88,7 @@
       }
 
       #scrollToTopBtn {
-        display: none;
+        display: none; 
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -98,18 +99,18 @@
         height: 7 0px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: center; 
         z-index: 1000;
         cursor: pointer;
         transition: opacity 0.3s ease;
       }
 
       #scrollToTopBtn:hover {
-        opacity: 1;
+        opacity: 1; 
       }
 
       svg {
-        color: white;
+        color: white; 
       }
 
       #theme-icons svg:hover,
@@ -121,6 +122,8 @@
       #github-icon {
         transition: 0.3s;
       }
+
+
     </style>
   </head>
   <body>
@@ -223,6 +226,2358 @@
         </thead>
         <tbody>
           
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1562.001">T1562.001</a>
+            </td>
+            <td>
+                Stop Crowdstrike Falcon on Linux
+                <br>
+                <small class="text-muted">GUID: 828a1278-81cc-4802-96ab-188bf29ca77d</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1562.001">T1562.001</a>
+            </td>
+            <td>
+                Disable syslog
+                <br>
+                <small class="text-muted">GUID: 4ce786f8-e601-44b5-bfae-9ebb15a7d1c8</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_services_stop_and_disable.yml">Disable Or Stop Services</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/f2e08a38-6689-4df4-ad8c-b51c16262316/">Linux Disable Services</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1562">T1562</a>
+            </td>
+            <td>
+                Disable journal logging via sed utility
+                <br>
+                <small class="text-muted">GUID: 12e5551c-8d5c-408e-b3e4-63f53b03379f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1562">T1562</a>
+            </td>
+            <td>
+                Disable journal logging via systemctl utility
+                <br>
+                <small class="text-muted">GUID: c3a377f9-1203-4454-aa35-9d391d34768f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_services_stop_and_disable.yml">Disable Or Stop Services</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1560.001">T1560.001</a>
+            </td>
+            <td>
+                Data Encrypted with zip and gpg symmetric
+                <br>
+                <small class="text-muted">GUID: 0286eb44-e7ce-41a0-b109-3da516e05a5f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/5c1c2877-06c0-40ee-a1a2-db71f1372b5b/">Windows Private Keys Discovery</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/a3b3bc96-1c4f-4eba-8218-027cac739a48/">Windows Password Managers Discovery</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1556.003">T1556.003</a>
+            </td>
+            <td>
+                Malicious PAM module
+                <br>
+                <small class="text-muted">GUID: 65208808-3125-4a2e-8389-a0a00e9ab326</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1556.003">T1556.003</a>
+            </td>
+            <td>
+                Malicious PAM rule (freebsd)
+                <br>
+                <small class="text-muted">GUID: b17eacac-282d-4ca8-a240-46602cf863e3</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1556.003">T1556.003</a>
+            </td>
+            <td>
+                Malicious PAM rule
+                <br>
+                <small class="text-muted">GUID: 4b9dde80-ae22-44b1-a82a-644bf009eb9c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Provide the SetUID capability to a file
+                <br>
+                <small class="text-muted">GUID: 1ac3272f-9bcf-443a-9888-4b1d3de785c1</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/9d96022e-6250-11ec-9a19-acde48001122/">Linux Setuid Using Setcap Utility</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Make and modify capabilities of a binary
+                <br>
+                <small class="text-muted">GUID: db53959c-207d-4000-9e7a-cd8eb417e072</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/9d96022e-6250-11ec-9a19-acde48001122/">Linux Setuid Using Setcap Utility</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Set a SetGID flag on file (freebsd)
+                <br>
+                <small class="text-muted">GUID: 1f73af33-62a8-4bf1-bd10-3bea931f2c0d</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/c1400ea2-6257-11ec-ad49-acde48001122/">Linux Change File Owner To Root</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Set a SetGID flag on file
+                <br>
+                <small class="text-muted">GUID: db55f666-7cba-46c6-9fe6-205a05c3242c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/c1400ea2-6257-11ec-ad49-acde48001122/">Linux Change File Owner To Root</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Set a SetUID flag on file (freebsd)
+                <br>
+                <small class="text-muted">GUID: 9be9b827-ff47-4e1b-bef8-217db6fb7283</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/c1400ea2-6257-11ec-ad49-acde48001122/">Linux Change File Owner To Root</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Set a SetUID flag on file
+                <br>
+                <small class="text-muted">GUID: 759055b3-3885-4582-a8ec-c00c9d64dd79</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/c1400ea2-6257-11ec-ad49-acde48001122/">Linux Change File Owner To Root</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Make and modify binary from C source (freebsd)
+                <br>
+                <small class="text-muted">GUID: dd580455-d84b-481b-b8b0-ac96f3b1dc4c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_setgid_setuid.yml">Setuid and Setgid</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/bf0304b6-6250-11ec-9d7c-acde48001122/">Linux Setuid Using Chmod Utility</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/c1400ea2-6257-11ec-ad49-acde48001122/">Linux Change File Owner To Root</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Make and modify binary from C source
+                <br>
+                <small class="text-muted">GUID: 896dfe97-ae43-4101-8e96-9a7996555d80</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_setgid_setuid.yml">Setuid and Setgid</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/bf0304b6-6250-11ec-9d7c-acde48001122/">Linux Setuid Using Chmod Utility</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/c1400ea2-6257-11ec-ad49-acde48001122/">Linux Change File Owner To Root</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1547.006">T1547.006</a>
+            </td>
+            <td>
+                Linux - Load Kernel Module via insmod
+                <br>
+                <small class="text-muted">GUID: 687dcb93-9656-4853-9c36-9977315e9d23</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/18b5a1a0-6326-11ec-943a-acde48001122/">Linux Insert Kernel Module Using Insmod Utility</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.004">T1546.004</a>
+            </td>
+            <td>
+                Create/Append to .bash_logout
+                <br>
+                <small class="text-muted">GUID: 37ad2f24-7c53-4a50-92da-427a4ad13f58</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.004">T1546.004</a>
+            </td>
+            <td>
+                Append commands user shell profile
+                <br>
+                <small class="text-muted">GUID: bbdb06bc-bab6-4f5b-8232-ba3fbed51d77</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/9c94732a-61af-11ec-91e3-acde48001122/">Linux Possible Append Command To Profile Config File</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.004">T1546.004</a>
+            </td>
+            <td>
+                Append to the system shell profile
+                <br>
+                <small class="text-muted">GUID: 694b3cc8-6a78-4d35-9e74-0123d009e94b</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/9c94732a-61af-11ec-91e3-acde48001122/">Linux Possible Append Command To Profile Config File</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.004">T1546.004</a>
+            </td>
+            <td>
+                Add command to .bashrc
+                <br>
+                <small class="text-muted">GUID: 0a898315-4cfa-4007-bafe-33a4646d115f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/9c94732a-61af-11ec-91e3-acde48001122/">Linux Possible Append Command To Profile Config File</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.004">T1546.004</a>
+            </td>
+            <td>
+                Add command to .bash_profile
+                <br>
+                <small class="text-muted">GUID: 94500ae1-7e31-47e3-886b-c328da46872f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/9c94732a-61af-11ec-91e3-acde48001122/">Linux Possible Append Command To Profile Config File</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1543.002">T1543.002</a>
+            </td>
+            <td>
+                Create Systemd Service file,  Enable the service , Modify and Reload the service.
+                <br>
+                <small class="text-muted">GUID: c35ac4a8-19de-43af-b9f8-755da7e89c89</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/084275ba-61b8-11ec-8d64-acde48001122/">Linux Service Restarted</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/e0428212-61b7-11ec-88a3-acde48001122/">Linux Service Started Or Enabled</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1543.002">T1543.002</a>
+            </td>
+            <td>
+                Create SysV Service
+                <br>
+                <small class="text-muted">GUID: 760fe8d2-79d9-494f-905e-a239a3df86f6</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1543.002">T1543.002</a>
+            </td>
+            <td>
+                Create Systemd Service
+                <br>
+                <small class="text-muted">GUID: d9e4f24f-aa67-4c6e-bcbf-85622b697a7c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/084275ba-61b8-11ec-8d64-acde48001122/">Linux Service Restarted</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/e0428212-61b7-11ec-88a3-acde48001122/">Linux Service Started Or Enabled</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1489">T1489</a>
+            </td>
+            <td>
+                Linux - Stop service by killing process using pkill
+                <br>
+                <small class="text-muted">GUID: 08b4718f-a8bf-4bb5-a552-294fc5178fea</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules-threat-hunting/linux/process_creation/proc_creation_lnx_susp_process_termination_via_kill.yml">Terminate Linux Process Via Kill</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/435c6b33-adf9-47fe-be87-8e29fd6654f5/">Linux Impair Defenses Process Kill</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1489">T1489</a>
+            </td>
+            <td>
+                Linux - Stop service by killing process using kill
+                <br>
+                <small class="text-muted">GUID: 332f4c76-7e96-41a6-8cc2-7361c49db8be</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1489">T1489</a>
+            </td>
+            <td>
+                Linux - Stop service by killing process using killall
+                <br>
+                <small class="text-muted">GUID: e5d95be6-02ee-4ff1-aebe-cf86013b6189</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules-threat-hunting/linux/process_creation/proc_creation_lnx_susp_process_termination_via_kill.yml">Terminate Linux Process Via Kill</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1489">T1489</a>
+            </td>
+            <td>
+                Linux - Stop service using systemctl
+                <br>
+                <small class="text-muted">GUID: 42e3a5bd-1e45-427f-aa08-2a65fa29a820</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_services_stop_and_disable.yml">Disable Or Stop Services</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1485">T1485</a>
+            </td>
+            <td>
+                FreeBSD/macOS/Linux - Overwrite file with DD
+                <br>
+                <small class="text-muted">GUID: 38deee99-fd65-4031-bec8-bfa4f9f26146</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_dd_file_overwrite.yml">DD File Overwrite</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/9b6aae5e-8d85-11ec-b2ae-acde48001122/">Linux DD File Overwrite</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                Chown through c script
+                <br>
+                <small class="text-muted">GUID: 18592ba1-5f88-4e3c-abc8-ab1c6042e389</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chattr - Remove immutable file attribute
+                <br>
+                <small class="text-muted">GUID: e7469fe2-ad41-4382-8965-99b94dd3c13f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_chattr_immutable_removal.yml">Remove Immutable File Attribute</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chown - Change file or folder ownership recursively
+                <br>
+                <small class="text-muted">GUID: 3b015515-b3d8-44e9-b8cd-6fa84faf30b2</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/c1400ea2-6257-11ec-ad49-acde48001122/">Linux Change File Owner To Root</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chown - Change file or folder mode ownership only
+                <br>
+                <small class="text-muted">GUID: 967ba79d-f184-4e0e-8d09-6362b3162e99</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/c1400ea2-6257-11ec-ad49-acde48001122/">Linux Change File Owner To Root</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chown - Change file or folder ownership and group recursively
+                <br>
+                <small class="text-muted">GUID: b78598be-ff39-448f-a463-adbf2a5b7848</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chown - Change file or folder ownership and group
+                <br>
+                <small class="text-muted">GUID: d169e71b-85f9-44ec-8343-27093ff3dfc0</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chmod - Change file or folder mode (symbolic mode) recursively
+                <br>
+                <small class="text-muted">GUID: 0451125c-b5f6-488f-993b-5a32b09f7d8f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_chmod_directories.yml">Chmod Suspicious Directory</a></li><li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chmod - Change file or folder mode (numeric mode) recursively
+                <br>
+                <small class="text-muted">GUID: ea79f937-4a4d-4348-ace6-9916aec453a4</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_chmod_directories.yml">Chmod Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chmod - Change file or folder mode (symbolic mode)
+                <br>
+                <small class="text-muted">GUID: fc9d6695-d022-4a80-91b1-381f5c35aff3</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_chmod_directories.yml">Chmod Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1222.002">T1222.002</a>
+            </td>
+            <td>
+                chmod - Change file or folder mode (numeric mode)
+                <br>
+                <small class="text-muted">GUID: 34ca1464-de9d-40c6-8c77-690adf36a135</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_chmod_directories.yml">Chmod Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1132.001">T1132.001</a>
+            </td>
+            <td>
+                Base64 Encoded data (freebsd)
+                <br>
+                <small class="text-muted">GUID: 2d97c626-7652-449e-a986-b02d9051c298</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_curl_usage.yml">Curl Usage on Linux</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1132.001">T1132.001</a>
+            </td>
+            <td>
+                Base64 Encoded data.
+                <br>
+                <small class="text-muted">GUID: 1164f70f-9a88-4dff-b9ff-dc70e7bf0c25</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_curl_usage.yml">Curl Usage on Linux</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1110.001">T1110.001</a>
+            </td>
+            <td>
+                SUDO Brute Force - Debian
+                <br>
+                <small class="text-muted">GUID: ba1bf0b6-f32b-4db0-b7cc-d78cacc76700</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1105">T1105</a>
+            </td>
+            <td>
+                Linux Download File and Run
+                <br>
+                <small class="text-muted">GUID: bdc373c5-e9cf-4563-8a7b-a9ba720a90f3</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_curl_usage.yml">Curl Usage on Linux</a></li><li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_pipe_shell.yml">Linux Shell Pipe to Shell</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/8c1de57d-abc1-4b41-a727-a7a8fc5e0857/">Linux Ingress Tool Transfer with Curl</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1098.004">T1098.004</a>
+            </td>
+            <td>
+                Modify SSH Authorized Keys
+                <br>
+                <small class="text-muted">GUID: 342cc723-127c-4d3a-8292-9c0c6b4ecadc</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/f5ab595e-28e5-4327-8077-5008ba97c850/">Linux SSH Authorized Keys Modification</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1090.003">T1090.003</a>
+            </td>
+            <td>
+                Tor Proxy Usage - Debian/Ubuntu/FreeBSD
+                <br>
+                <small class="text-muted">GUID: 5ff9d047-6e9c-4357-b39b-5cf89d9b59c7</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/e0428212-61b7-11ec-88a3-acde48001122/">Linux Service Started Or Enabled</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1074.001">T1074.001</a>
+            </td>
+            <td>
+                Stage data from Discovery.sh
+                <br>
+                <small class="text-muted">GUID: 39ce0303-ae16-4b9e-bb5b-4f53e8262066</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_curl_usage.yml">Curl Usage on Linux</a></li><li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_pipe_shell.yml">Linux Shell Pipe to Shell</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1070.004">T1070.004</a>
+            </td>
+            <td>
+                Overwrite and delete a file with shred
+                <br>
+                <small class="text-muted">GUID: 039b4b10-2900-404b-b67f-4b6d49aa6499</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/c1952cf1-643c-4965-82de-11c067cbae76/">Linux Shred Overwrite Command</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1070.003">T1070.003</a>
+            </td>
+            <td>
+                Clear Docker Container Logs
+                <br>
+                <small class="text-muted">GUID: 553b39f9-1e8c-47b1-abf5-8daf7b0391e9</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1070.002">T1070.002</a>
+            </td>
+            <td>
+                rm -rf
+                <br>
+                <small class="text-muted">GUID: bd8ccc45-d632-481e-b7cf-c467627d68f9</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/33f89303-cc6f-49ad-921d-2eaea38a6f7a/">Linux Deleting Critical Directory Using RM Command</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1059.004">T1059.004</a>
+            </td>
+            <td>
+                emacs spawning an interactive system shell
+                <br>
+                <small class="text-muted">GUID: e0742e38-6efe-4dd4-ba5c-2078095b6156</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1059.004">T1059.004</a>
+            </td>
+            <td>
+                Detecting pipe-to-shell
+                <br>
+                <small class="text-muted">GUID: fca246a8-a585-4f28-a2df-6495973976a1</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_curl_usage.yml">Curl Usage on Linux</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1059.004">T1059.004</a>
+            </td>
+            <td>
+                LinEnum tool execution
+                <br>
+                <small class="text-muted">GUID: a2b35a63-9df1-4806-9a4d-5fe0500845f2</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1059.004">T1059.004</a>
+            </td>
+            <td>
+                Harvest SUID executable files
+                <br>
+                <small class="text-muted">GUID: 46274fc6-08a7-4956-861b-24cbbaa0503c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1059.004">T1059.004</a>
+            </td>
+            <td>
+                Command-Line Interface
+                <br>
+                <small class="text-muted">GUID: d0c88567-803d-4dca-99b4-7ce65e7b257c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_pipe_shell.yml">Linux Shell Pipe to Shell</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1059.004">T1059.004</a>
+            </td>
+            <td>
+                Create and Execute Bash Shell Script
+                <br>
+                <small class="text-muted">GUID: 7e7ac3ed-f795-4fa5-b711-09d6fbe9b873</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1053.006">T1053.006</a>
+            </td>
+            <td>
+                Create Systemd Service and Timer
+                <br>
+                <small class="text-muted">GUID: f4983098-bb13-44fb-9b2c-46149961807b</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/084275ba-61b8-11ec-8d64-acde48001122/">Linux Service Restarted</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/e0428212-61b7-11ec-88a3-acde48001122/">Linux Service Started Or Enabled</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1053.003">T1053.003</a>
+            </td>
+            <td>
+                Cron - Add script to /var/spool/cron/crontabs/ folder
+                <br>
+                <small class="text-muted">GUID: 2d943c18-e74a-44bf-936f-25ade6cccab4</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/b5b91200-5f27-11ec-bb4e-acde48001122/">Linux Possible Append Cronjob Entry on Existing Cronjob File</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1053.003">T1053.003</a>
+            </td>
+            <td>
+                Cron - Add script to /etc/cron.d folder
+                <br>
+                <small class="text-muted">GUID: 078e69eb-d9fb-450e-b9d0-2e118217c846</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/b5b91200-5f27-11ec-bb4e-acde48001122/">Linux Possible Append Cronjob Entry on Existing Cronjob File</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1053.003">T1053.003</a>
+            </td>
+            <td>
+                Cron - Add script to all cron subfolders
+                <br>
+                <small class="text-muted">GUID: b7d42afa-9086-4c8a-b7b0-8ea3faa6ebb0</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/b5b91200-5f27-11ec-bb4e-acde48001122/">Linux Possible Append Cronjob Entry on Existing Cronjob File</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1048.002">T1048.002</a>
+            </td>
+            <td>
+                Exfiltrate data as text over HTTPS using wget
+                <br>
+                <small class="text-muted">GUID: 8bec51da-7a6d-4346-b941-51eca448c4b0</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1048.002">T1048.002</a>
+            </td>
+            <td>
+                Exfiltrate data in a file over HTTPS using wget
+                <br>
+                <small class="text-muted">GUID: 7ccdfcfa-6707-46bc-b812-007ab6ff951c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1048.002">T1048.002</a>
+            </td>
+            <td>
+                Exfiltrate data HTTPS using curl freebsd,linux or macos
+                <br>
+                <small class="text-muted">GUID: 4a4f31e2-46ea-4c26-ad89-f09ad1d5fe01</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_curl_usage.yml">Curl Usage on Linux</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/52fd468b-cb6d-48f5-b16a-92f1c9bb10cf/">Linux Ingress Tool Transfer Hunting</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1040">T1040</a>
+            </td>
+            <td>
+                Packet Capture Linux socket AF_PACKET,SOCK_RAW with BPF filter for UDP with sudo
+                <br>
+                <small class="text-muted">GUID: b1cbdf8b-6078-48f5-a890-11ea19d7f8e9</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1040">T1040</a>
+            </td>
+            <td>
+                Packet Capture Linux socket AF_INET,SOCK_PACKET,UDP with sudo
+                <br>
+                <small class="text-muted">GUID: 515575ab-d213-42b1-aa64-ef6a2dd4641b</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1040">T1040</a>
+            </td>
+            <td>
+                Packet Capture Linux socket AF_INET,SOCK_RAW,TCP with sudo
+                <br>
+                <small class="text-muted">GUID: 7a0895f0-84c1-4adf-8491-a21510b1d4c1</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1040">T1040</a>
+            </td>
+            <td>
+                Packet Capture Linux socket AF_PACKET,SOCK_RAW with sudo
+                <br>
+                <small class="text-muted">GUID: 10c710c9-9104-4d5f-8829-5b65391e2a29</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1040">T1040</a>
+            </td>
+            <td>
+                Filtered Packet Capture FreeBSD using /dev/bpfN with sudo
+                <br>
+                <small class="text-muted">GUID: a3a0d4c9-c068-4563-a08d-583bd05b884c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1040">T1040</a>
+            </td>
+            <td>
+                Packet Capture FreeBSD using /dev/bpfN with sudo
+                <br>
+                <small class="text-muted">GUID: e2028771-1bfb-48f5-b5e6-e50ee0942a14</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1037.004">T1037.004</a>
+            </td>
+            <td>
+                rc.local
+                <br>
+                <small class="text-muted">GUID: 126f71af-e1c9-405c-94ef-26a47b16c102</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1037.004">T1037.004</a>
+            </td>
+            <td>
+                rc.common
+                <br>
+                <small class="text-muted">GUID: c33f3d80-5f04-419b-a13a-854d1cbdbf3a</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1036.006">T1036.006</a>
+            </td>
+            <td>
+                Space After Filename
+                <br>
+                <small class="text-muted">GUID: b95ce2eb-a093-4cd8-938d-5258cef656ea</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1036.005">T1036.005</a>
+            </td>
+            <td>
+                Execute a process from a directory masquerading as the current parent directory.
+                <br>
+                <small class="text-muted">GUID: 812c3ab8-94b0-4698-a9bf-9420af23ce24</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/d0026380-b3c4-4da0-ac8e-02790063ff6b/">Windows Command and Scripting Interpreter Hunting Path Traversal</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1027">T1027</a>
+            </td>
+            <td>
+                Decode base64 Data into Script
+                <br>
+                <small class="text-muted">GUID: f45df6be-2e1e-4136-a384-8f18ab3826fb</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1014">T1014</a>
+            </td>
+            <td>
+                Loadable Kernel Module based Rootkit
+                <br>
+                <small class="text-muted">GUID: 75483ef8-f10f-444a-bf02-62eb0e48db6f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/387b278a-6326-11ec-aa2c-acde48001122/">Linux Install Kernel Module Using Modprobe Utility</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1014">T1014</a>
+            </td>
+            <td>
+                Loadable Kernel Module based Rootkit
+                <br>
+                <small class="text-muted">GUID: dfb50072-e45a-4c75-a17e-a484809c8553</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/18b5a1a0-6326-11ec-943a-acde48001122/">Linux Insert Kernel Module Using Insmod Utility</a></li><li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1005">T1005</a>
+            </td>
+            <td>
+                Find and dump sqlite databases (Linux)
+                <br>
+                <small class="text-muted">GUID: 00cbb875-7ae4-4cf1-b638-e543fd825300</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/66ab15c0-63d0-11ec-9e70-acde48001122/">Linux Common Process For Elevation Control</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1003.007">T1003.007</a>
+            </td>
+            <td>
+                Capture Passwords with MimiPenguin
+                <br>
+                <small class="text-muted">GUID: a27418de-bdce-4ebd-b655-38f04842bf0c</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://research.splunk.com/endpoint/4b00f134-6d6a-11ec-a90c-acde48001122/">Linux Sudo OR Su Execution</a></li>
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1562.001">T1562.001</a>
+            </td>
+            <td>
+                Disable SELinux
+                <br>
+                <small class="text-muted">GUID: fc225f36-9279-4c39-b3f9-5141ab74f8d8</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_security_tools_disabling.yml">Disabling Security Tools</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Do reconnaissance for files that have the setgid bit set
+                <br>
+                <small class="text-muted">GUID: 3fb46e17-f337-4c14-9f9a-a471946533e2</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_find_execution.yml">Potential Discovery Activity Using Find - Linux</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1548.001">T1548.001</a>
+            </td>
+            <td>
+                Do reconnaissance for files that have the setuid bit set
+                <br>
+                <small class="text-muted">GUID: 8e36da01-cd29-45fd-be72-8a0fcaad4481</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_find_execution.yml">Potential Discovery Activity Using Find - Linux</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.005">T1546.005</a>
+            </td>
+            <td>
+                Trap SIGINT (freebsd)
+                <br>
+                <small class="text-muted">GUID: ade10242-1eac-43df-8412-be0d4c704ada</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_nohup.yml">Nohup Execution</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.005">T1546.005</a>
+            </td>
+            <td>
+                Trap SIGINT
+                <br>
+                <small class="text-muted">GUID: a547d1ba-1d7a-4cc5-a9cb-8d65e8809636</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_nohup.yml">Nohup Execution</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.005">T1546.005</a>
+            </td>
+            <td>
+                Trap EXIT (freebsd)
+                <br>
+                <small class="text-muted">GUID: be1a5d70-6865-44aa-ab50-42244c9fd16f</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_nohup.yml">Nohup Execution</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1546.005">T1546.005</a>
+            </td>
+            <td>
+                Trap EXIT
+                <br>
+                <small class="text-muted">GUID: a74b2e07-5952-4c03-8b56-56274b076b61</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_nohup.yml">Nohup Execution</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1518.001">T1518.001</a>
+            </td>
+            <td>
+                Security Software Discovery - ps (Linux)
+                <br>
+                <small class="text-muted">GUID: 23b91cd2-c99c-4002-9e41-317c63e024a2</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_security_software_discovery.yml">Security Software Discovery - Linux</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1140">T1140</a>
+            </td>
+            <td>
+                Linux Base64 Encoded Shebang in CLI
+                <br>
+                <small class="text-muted">GUID: 3a15c372-67c1-4430-ac8e-ec06d641ce4d</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_base64_execution.yml">Linux Base64 Encoded Pipe to Shell</a></li><li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_base64_shebang_cli.yml">Linux Base64 Encoded Shebang In CLI</a></li><li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_pipe_shell.yml">Linux Shell Pipe to Shell</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1140">T1140</a>
+            </td>
+            <td>
+                FreeBSD b64encode Shebang in CLI
+                <br>
+                <small class="text-muted">GUID: 18ee2002-66e8-4518-87c5-c0ec9c8299ac</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_base64_shebang_cli.yml">Linux Base64 Encoded Shebang In CLI</a></li><li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_pipe_shell.yml">Linux Shell Pipe to Shell</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1113">T1113</a>
+            </td>
+            <td>
+                Capture Linux Desktop using Import Tool
+                <br>
+                <small class="text-muted">GUID: 9cd1cccb-91e4-4550-9139-e20a586fcea1</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1110.004">T1110.004</a>
+            </td>
+            <td>
+                SSH Credential Stuffing From Linux
+                <br>
+                <small class="text-muted">GUID: 4f08197a-2a8a-472d-9589-cd2895ef22ad</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1105">T1105</a>
+            </td>
+            <td>
+                sftp remote file copy (push)
+                <br>
+                <small class="text-muted">GUID: f564c297-7978-4aa9-b37a-d90477feea4e</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1090.001">T1090.001</a>
+            </td>
+            <td>
+                Connection Proxy
+                <br>
+                <small class="text-muted">GUID: 0ac21132-4485-4212-a681-349e8a6637cd</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_proxy_connection.yml">Connection Proxy</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1070.004">T1070.004</a>
+            </td>
+            <td>
+                Delete a single file - FreeBSD/Linux/macOS
+                <br>
+                <small class="text-muted">GUID: 562d737f-2fc6-4b09-8c2a-7f8ff0828480</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_file_deletion.yml">File Deletion</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1070.003">T1070.003</a>
+            </td>
+            <td>
+                Clear Bash history (rm)
+                <br>
+                <small class="text-muted">GUID: a934276e-2be5-4a36-93fd-98adbb5bd4fc</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_history_delete.yml">History File Deletion</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1070.002">T1070.002</a>
+            </td>
+            <td>
+                Delete system log files via unlink utility (freebsd)
+                <br>
+                <small class="text-muted">GUID: 45ad4abd-19bd-4c5f-a687-41f3eee8d8c2</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_clear_logs.yml">Clear Linux Logs</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1059.004">T1059.004</a>
+            </td>
+            <td>
+                Shell Creation using awk command
+                <br>
+                <small class="text-muted">GUID: ee72b37d-b8f5-46a5-a9e7-0ff50035ffd5</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_awk_shell_spawn.yml">Suspicious Invocation of Shell via AWK - Linux</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1001.002">T1001.002</a>
+            </td>
+            <td>
+                Execute Embedded Script in Image via Steganography
+                <br>
+                <small class="text-muted">GUID: 4ff61684-ad91-405c-9fbc-048354ff1d07</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_base64_execution.yml">Linux Base64 Encoded Pipe to Shell</a></li><li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_pipe_shell.yml">Linux Shell Pipe to Shell</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1003.008">T1003.008</a>
+            </td>
+            <td>
+                Access /etc/shadow (Local)
+                <br>
+                <small class="text-muted">GUID: 3723ab77-c546-403c-8fb4-bb577033b235</small>
+            </td>
+            <td >
+                <img src="./assets/images/linux-logo.svg" height="32" alt="Linux" title="Linux">
+            </td>
+            <td class="rules">
+                <ul>
+                    <li><a target="_blank" href="https://github.com/SigmaHQ/sigma/blob/master/rules/linux/process_creation/proc_creation_lnx_susp_shell_script_exec_from_susp_location.yml">Execution Of Script Located In Potentially Suspicious Directory</a></li>
+                </ul>
+            </td>
+            <td class="rules">
+                <ul>
+                    N/A
+                </ul>
+            </td>
+        </tr>
+    
         <tr>
             <td>
                 <a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="https://www.atomicredteam.io/atomic-red-team/atomics/T1562.001">T1562.001</a>
@@ -10428,7 +12783,7 @@
     <script src="./assets/js/fixedHeader.bootstrap5.min.js"></script>
     <script src="./assets/js/dataTables.fixedHeader.min.js"></script>
 
-    <script>
+    <script>  
       $(document).ready(function () {
         $("#arm-table").DataTable({
           paging: false,
@@ -10509,6 +12864,7 @@
                   2
                 );
 
+                // JSON indir
                 const blob = new Blob([json], { type: "application/json" });
                 const link = document.createElement("a");
                 link.href = URL.createObjectURL(blob);
@@ -10526,23 +12882,21 @@
           $("html").attr("data-bs-theme", "dark");
           toggleIcons();
         }
-
+        
         $("#dark-mode-icon").click(function () {
           $("html").attr("data-bs-theme", "light");
           localStorage.setItem("theme", "light");
           toggleIcons();
         });
-
+        
         $("#light-mode-icon").click(function () {
           $("html").attr("data-bs-theme", "dark");
           localStorage.setItem("theme", "dark");
           toggleIcons();
         });
-
+        
         function toggleIcons() {
-          $(".json-export")
-            .removeClass("btn-secondary")
-            .addClass("btn-success");
+          $(".json-export").removeClass("btn-secondary").addClass("btn-success");
           if ($("html").attr("data-bs-theme") === "dark") {
             $("#light-mode-icon").hide();
             $("#dark-mode-icon").show();
