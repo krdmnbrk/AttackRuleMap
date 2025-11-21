@@ -38,3 +38,12 @@ This project is open to contributions from the community. Here are some ways you
 - **Feedback and Suggestions:** Share your ideas for improving the project or addressing potential gaps.
 
 If you'd like to contribute, feel free to submit a pull request or open an issue. 💡
+
+## 👋 Contributors
+
+This project is made possible thanks to the work of the community.  
+Special thanks to everyone who helps improve the correlation between Atomic Red Team and Splunk Security Content.
+
+### 🧩 Community Contributors
+
+- [@jotaah123](https://github.com/jotaah123) – Added Splunk rule filling automation, marked uncovered entries, and improved the overall mapping structure for techniques without existing Splunk rules.
