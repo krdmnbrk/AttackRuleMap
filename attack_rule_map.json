@@ -8950,5 +8950,217 @@
         "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/windows/process_creation/proc_creation_win_fltmc_unload_driver.yml"
       }
     ]
+  },
+  {
+    "tech_id": "T1005",
+    "atomic_attack_guid": "cfb6d400-a269-4c06-a347-6d88d584d5f7",
+    "atomic_attack_name": "Copy Apple Notes database files using AppleScript",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "MacOS Scripting Interpreter AppleScript",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_applescript.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1016",
+    "atomic_attack_guid": "c141bbdb-7fca-4254-9fd6-f47e79447e17",
+    "atomic_attack_name": "System Network Configuration Discovery",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "System Network Discovery - macOS",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_susp_system_network_discovery.yml"
+      },
+      {
+        "rule_name": "Macos Remote System Discovery",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_remote_system_discovery.yml"
+      },
+      {
+        "rule_name": "System Network Connections Discovery - MacOs",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_system_network_connections_discovery.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1016",
+    "atomic_attack_guid": "ff1d8c25-2aa4-4f18-a425-fede4a41ee88",
+    "atomic_attack_name": "List macOS Firewall Rules",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "System Network Discovery - macOS",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_susp_system_network_discovery.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1018",
+    "atomic_attack_guid": "acb6b1ff-e2ad-4d64-806c-6c35fe73b951",
+    "atomic_attack_name": "Remote System Discovery - arp nix",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "System Network Discovery - macOS",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_susp_system_network_discovery.yml"
+      },
+      {
+        "rule_name": "Macos Remote System Discovery",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_remote_system_discovery.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1018",
+    "atomic_attack_guid": "96db2632-8417-4dbb-b8bb-a8b92ba391de",
+    "atomic_attack_name": "Remote System Discovery - sweep",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "Macos Remote System Discovery",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_remote_system_discovery.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1021.005",
+    "atomic_attack_guid": "8a930abe-841c-4d4f-a877-72e9fe90b9ea",
+    "atomic_attack_name": "Enable Apple Remote Desktop Agent",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "System Information Discovery Using sw_vers",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_swvers_discovery.yml"
+      },
+      {
+        "rule_name": "Local System Accounts Discovery - MacOs",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_local_account.yml"
+      },
+      {
+        "rule_name": "Launch Agent/Daemon Execution Via Launchctl",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_launchctl_execution.yml"
+      },
+      {
+        "rule_name": "Creation Of A Local User Account",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_create_account.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1027",
+    "atomic_attack_guid": "f45df6be-2e1e-4136-a384-8f18ab3826fb",
+    "atomic_attack_name": "Decode base64 Data into Script",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "Decode Base64 Encoded Text -MacOs",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_base64_decode.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1027.001",
+    "atomic_attack_guid": "ffe2346c-abd5-4b45-a713-bf5f1ebd573a",
+    "atomic_attack_name": "Pad Binary to Change Hash - Linux/macOS dd",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "Binary Padding - MacOS",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_binary_padding.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1027.001",
+    "atomic_attack_guid": "e22a9e89-69c7-410f-a473-e6c212cd2292",
+    "atomic_attack_name": "Pad Binary to Change Hash using truncate command - Linux/macOS",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "Binary Padding - MacOS",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_binary_padding.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1030",
+    "atomic_attack_guid": "ab936c51-10f4-46ce-9144-e02137b2016a",
+    "atomic_attack_name": "Data Transfer Size Limits",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "Split A File Into Pieces",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_split_file_into_pieces.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1033",
+    "atomic_attack_guid": "2a9b677d-a230-44f4-ad86-782df1ef108c",
+    "atomic_attack_name": "System Owner/User Discovery",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "System Network Connections Discovery - MacOs",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_system_network_connections_discovery.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1037.005",
+    "atomic_attack_guid": "fc369906-90c7-4a15-86fd-d37da624dde6",
+    "atomic_attack_name": "Add launch script to launch daemon",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "MacOS Scripting Interpreter AppleScript",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_applescript.yml"
+      },
+      {
+        "rule_name": "Launch Agent/Daemon Execution Via Launchctl",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_launchctl_execution.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1037.005",
+    "atomic_attack_guid": "10cf5bec-49dd-4ebf-8077-8f47e420096f",
+    "atomic_attack_name": "Add launch script to launch agent",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "MacOS Scripting Interpreter AppleScript",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_applescript.yml"
+      },
+      {
+        "rule_name": "Launch Agent/Daemon Execution Via Launchctl",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_launchctl_execution.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1040",
+    "atomic_attack_guid": "9d04efee-eff5-4240-b8d2-07792b873608",
+    "atomic_attack_name": "Packet Capture macOS using tcpdump or tshark",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "Network Sniffing - MacOs",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_network_sniffing.yml"
+      }
+    ]
+  },
+  {
+    "tech_id": "T1046",
+    "atomic_attack_guid": "68e907da-2539-48f6-9fc9-257a78c05540",
+    "atomic_attack_name": "Port Scan",
+    "platform": "macOS",
+    "sigma_rules": [
+      {
+        "rule_name": "MacOS Network Service Scanning",
+        "rule_link": "https://github.com/SigmaHQ/sigma/blob/master/rules/macos/process_creation/proc_creation_macos_network_service_scanning.yml"
+      }
+    ]
   }
 ]
