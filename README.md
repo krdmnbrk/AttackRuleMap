@@ -14,8 +14,6 @@ This repository provides a mapping of Atomic Red Team attack simulations to open
 ## 🎯 Project Purpose
 The goal of this project is to bridge the gap between Atomic Red Team's adversary simulations and open-source detection rules. By doing so, this project aims to help security professionals simulate attacks and evaluate their detection strategies more effectively. 🔒
 
-Aşağıda sadece **Project Origin** kısmını, Medium’daki katkıyı özetleyerek güncelledim. Diğer bölümler aynı kalacak şekilde kullanabilirsin.
-
 ## 🧬 Project Origin (Proof-of-Concept to Scalable Validation)
 
 AttackRuleMap started as a hands-on lab simulation effort. In the initial phase, I:

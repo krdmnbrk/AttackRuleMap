@@ -2,15 +2,32 @@
 <html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <title>ARM - AttackRuleMap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AttackRuleMap — Atomic Red Team to Detection Rules Mapping</title>
     <meta
       name="description"
-      content="Mapping of open-source detection rules and atomic tests."
+      content="Mapping of Atomic Red Team attack simulations to open-source detection rules (Sigma & Splunk ESCU)."
     />
+    <meta name="author" content="Burak Karaduman" />
+
+    <!-- Apply saved theme before first paint to avoid flashing -->
+    <script>
+      (function () {
+        try {
+          var t =
+            localStorage.getItem("theme") ||
+            (window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark");
+          document.documentElement.setAttribute("data-bs-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+
     <link
       rel="icon"
       type="image/png"
-      href="./assets/images/favicon/"
+      href="./assets/images/favicon/favicon-96x96.png"
       sizes="96x96"
     />
     <link
@@ -25,7 +42,7 @@
       href="./assets/images/favicon/apple-touch-icon.png"
     />
     <meta name="apple-mobile-web-app-title" content="ARM" />
-    <link rel="manifest" href="./assets/images/favicon//site.webmanifest" />
+    <link rel="manifest" href="./assets/images/favicon/site.webmanifest" />
 
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/css/dataTables.bootstrap5.min.css" />
@@ -33,211 +50,782 @@
     <link rel="stylesheet" href="./assets/css/fixedHeader.bootstrap5.min.css" />
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="ARM - AttackRuleMap" />
+    <meta property="og:title" content="AttackRuleMap" />
     <meta
       property="og:description"
-      content="Mapping of open-source detection rules and atomic tests."
+      content="Mapping of Atomic Red Team attack simulations to open-source detection rules (Sigma & Splunk ESCU)."
     />
     <meta
       property="og:image"
-      content="https://attackrulemap.netlify.app/assets/images/og-logo.png"
+      content="https://attackrulemap.com/assets/images/og-logo.png"
     />
-    <meta property="og:url" content="https://attackrulemap.netlify.com" />
+    <meta property="og:url" content="https://attackrulemap.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="attackrulemap.netlify.com" />
-    <meta name="author" content="Burak Karaduman" />
+    <meta property="og:site_name" content="attackrulemap.com" />
+
     <style>
+      /* ============================================================
+         Design tokens — light is the base, dark overrides below.
+         ============================================================ */
       @font-face {
-        font-family: "Chakra Petch Regular";
+        font-family: "Chakra Petch";
         src: url("./assets/fonts/ChakraPetch-Regular.ttf") format("truetype");
         font-style: normal;
+        font-display: swap;
       }
 
-      #header {
-        font-family: "Chakra Petch Regular";
+      :root,
+      [data-bs-theme="light"] {
+        --arm-bg: #f3f5f9;
+        --arm-surface: #ffffff;
+        --arm-surface-2: #eef1f6;
+        --arm-border: #d9e0ea;
+        --arm-text: #1c2434;
+        --arm-text-muted: #5b6980;
+        --arm-primary: #1d63d8;
+        --arm-primary-soft: rgba(29, 99, 216, 0.1);
+        --arm-primary-border: rgba(29, 99, 216, 0.35);
+        --arm-accent: #b45309;
+        --arm-danger: #c2303e;
+        --arm-danger-soft: rgba(194, 48, 62, 0.08);
+        --arm-danger-border: rgba(194, 48, 62, 0.35);
+        --arm-chip-text: #14498f;
+        --arm-shadow: 0 1px 2px rgba(16, 24, 40, 0.06),
+          0 1px 3px rgba(16, 24, 40, 0.1);
+        --arm-font-brand: "Chakra Petch", system-ui, sans-serif;
+        --arm-font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo,
+          Consolas, monospace;
       }
 
-      th {
-        vertical-align: middle;
+      [data-bs-theme="dark"] {
+        --arm-bg: #0b0f16;
+        --arm-surface: #121826;
+        --arm-surface-2: #182134;
+        --arm-border: #253048;
+        --arm-text: #e8edf6;
+        --arm-text-muted: #9aa6bc;
+        --arm-primary: #5b97f5;
+        --arm-primary-soft: rgba(91, 151, 245, 0.13);
+        --arm-primary-border: rgba(91, 151, 245, 0.4);
+        --arm-accent: #f0b429;
+        --arm-danger: #e5697a;
+        --arm-danger-soft: rgba(229, 105, 122, 0.1);
+        --arm-danger-border: rgba(229, 105, 122, 0.4);
+        --arm-chip-text: #a8c7fa;
+        --arm-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+      }
+
+      body {
+        background-color: var(--arm-bg);
+        color: var(--arm-text);
+        font-size: 0.9375rem;
+        line-height: 1.6;
+      }
+
+      /* ============================================================
+         Accessibility
+         ============================================================ */
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 2000;
+        padding: 0.5rem 1rem;
+        background: var(--arm-primary);
+        color: #fff;
+        border-radius: 0 0 6px 0;
+      }
+
+      .skip-link:focus {
+        left: 0;
+        color: #fff;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible,
+      select:focus-visible {
+        outline: 2px solid var(--arm-primary);
+        outline-offset: 2px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* ============================================================
+         Header
+         ============================================================ */
+      .site-header {
+        background: var(--arm-surface);
+        border-bottom: 1px solid var(--arm-border);
+      }
+
+      .brand-title {
+        font-family: var(--arm-font-brand);
+        font-size: 1.5rem;
+        letter-spacing: 0.02em;
+        margin: 0;
+      }
+
+      .brand-tagline {
+        color: var(--arm-text-muted);
+        font-size: 0.85rem;
+        margin: 0;
+      }
+
+      .header-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--arm-text);
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .header-action:hover {
+        background: var(--arm-surface-2);
+        border-color: var(--arm-border);
+        color: var(--arm-text);
+      }
+
+      #theme-toggle .icon-sun,
+      [data-bs-theme="dark"] #theme-toggle .icon-moon {
+        display: none;
+      }
+
+      [data-bs-theme="dark"] #theme-toggle .icon-sun {
+        display: block;
+      }
+
+      .updated-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.78rem;
+        color: var(--arm-text-muted);
+        background: var(--arm-surface-2);
+        border: 1px solid var(--arm-border);
+        border-radius: 999px;
+        padding: 0.25rem 0.75rem;
         white-space: nowrap;
       }
 
-      table {
-        font-size: 14px;
+      /* ============================================================
+         Stats
+         ============================================================ */
+      .stat-tile {
+        background: var(--arm-surface);
+        border: 1px solid var(--arm-border);
+        border-radius: 10px;
+        padding: 0.875rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        height: 100%;
+        box-shadow: var(--arm-shadow);
       }
 
-      li {
-        margin-bottom: 3px;
+      .stat-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        flex: none;
+        border-radius: 8px;
+        background: var(--arm-primary-soft);
+        color: var(--arm-primary);
       }
 
-      .mitre-tech-btn {
-        background-color: #3f6894;
-        font-size: 13px;
-        color: white;
-        border-radius: 2px;
+      .stat-value {
+        font-family: var(--arm-font-brand);
+        font-size: 1.35rem;
+        font-weight: 600;
+        line-height: 1.1;
+        font-variant-numeric: tabular-nums;
       }
 
-      .mitre-tech-btn:hover {
-        background-color: #2b5178;
-        color: white;
+      .stat-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--arm-text-muted);
       }
 
-      #theme-icons {
+      /* ============================================================
+         Table card + toolbar
+         ============================================================ */
+      .table-card {
+        background: var(--arm-surface);
+        border: 1px solid var(--arm-border);
+        border-radius: 12px;
+        box-shadow: var(--arm-shadow);
+        padding: 1rem 1rem 0.5rem;
+      }
+
+      .arm-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .arm-toolbar-left {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .arm-toolbar-right {
+        margin-left: auto;
+        min-width: 260px;
+        flex: 1 1 260px;
+        max-width: 380px;
+      }
+
+      .arm-toolbar-right .dt-search,
+      .arm-toolbar-right div.dataTables_filter {
+        width: 100%;
+      }
+
+      .arm-toolbar-right .dt-search input,
+      .arm-toolbar-right div.dataTables_filter input {
+        width: 100% !important;
+        margin: 0;
+        background: var(--arm-surface-2);
+        border: 1px solid var(--arm-border);
+        color: var(--arm-text);
+        border-radius: 8px;
+        padding: 0.45rem 0.75rem;
+      }
+
+      .arm-toolbar-right .dt-search input::placeholder {
+        color: var(--arm-text-muted);
+      }
+
+      .arm-toolbar-right .dt-search label,
+      .arm-toolbar-right div.dataTables_filter label {
+        display: none;
+      }
+
+      div.dt-buttons .btn,
+      .btn-navigator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.84rem;
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 0.42rem 0.8rem;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+      }
+
+      div.dt-buttons .btn-arm-export {
+        background: var(--arm-primary-soft);
+        border: 1px solid var(--arm-primary-border);
+        color: var(--arm-primary);
+      }
+
+      div.dt-buttons .btn-arm-export:hover {
+        background: var(--arm-primary);
+        border-color: var(--arm-primary);
+        color: #fff;
+      }
+
+      .btn-navigator {
+        background: var(--arm-danger-soft);
+        border: 1px solid var(--arm-danger-border);
+        color: var(--arm-danger);
+      }
+
+      .btn-navigator:hover,
+      .btn-navigator:focus,
+      .btn-group.show .btn-navigator {
+        background: var(--arm-danger);
+        border-color: var(--arm-danger);
+        color: #fff;
+      }
+
+      .dropdown-menu {
+        background: var(--arm-surface);
+        border: 1px solid var(--arm-border);
+        box-shadow: var(--arm-shadow);
+        font-size: 0.86rem;
+      }
+
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--arm-text);
+      }
+
+      .dropdown-item:hover {
+        background: var(--arm-surface-2);
+        color: var(--arm-text);
+      }
+
+      /* Platform filter chips */
+      .arm-filters {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .arm-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.3rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid var(--arm-border);
+        background: transparent;
+        color: var(--arm-text-muted);
         cursor: pointer;
+        transition: background-color 0.2s ease, color 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .arm-chip:hover {
+        border-color: var(--arm-primary-border);
+        color: var(--arm-text);
+      }
+
+      .arm-chip.active {
+        background: var(--arm-primary-soft);
+        border-color: var(--arm-primary-border);
+        color: var(--arm-chip-text);
+      }
+
+      .arm-chip .chip-count {
+        font-size: 0.75rem;
+        color: var(--arm-text-muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ============================================================
+         Table
+         ============================================================ */
+      #arm-table {
+        --bs-table-bg: transparent;
+        --bs-table-striped-bg: var(--arm-surface-2);
+        --bs-table-hover-bg: var(--arm-primary-soft);
+        margin-bottom: 0.5rem;
+        font-size: 0.86rem;
+      }
+
+      #arm-table thead th {
+        background: var(--arm-surface-2);
+        border-bottom: 2px solid var(--arm-border);
+        color: var(--arm-text);
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        vertical-align: middle;
+        white-space: nowrap;
+        padding: 0.6rem 0.75rem;
+      }
+
+      #arm-table thead th img {
+        vertical-align: -5px;
+      }
+
+      #arm-table tbody td {
+        border-color: var(--arm-border);
+        padding: 0.6rem 0.75rem;
+        vertical-align: top;
+      }
+
+      table.dataTable.table-striped > tbody > tr:nth-of-type(odd) > * {
+        box-shadow: none;
+        background: transparent;
+      }
+
+      #arm-table tbody tr:hover > * {
+        background: var(--arm-primary-soft);
+      }
+
+      /* Tech ID chip */
+      .tech-chip {
+        display: inline-block;
+        font-family: var(--arm-font-mono);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--arm-chip-text);
+        background: var(--arm-primary-soft);
+        border: 1px solid var(--arm-primary-border);
+        border-radius: 6px;
+        padding: 0.15rem 0.5rem;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .tech-chip:hover {
+        background: var(--arm-primary);
+        border-color: var(--arm-primary);
+        color: #fff;
+      }
+
+      .attack-name {
+        font-weight: 500;
+      }
+
+      .attack-guid {
+        display: block;
+        font-family: var(--arm-font-mono);
+        font-size: 0.75rem;
+        color: var(--arm-text-muted);
+        margin-top: 0.15rem;
+        word-break: break-all;
+      }
+
+      .platform-cell {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        white-space: nowrap;
+      }
+
+      .platform-cell img {
+        width: 22px;
+        height: 22px;
+      }
+
+      .platform-cell span {
+        font-size: 0.8rem;
+        color: var(--arm-text-muted);
+      }
+
+      .rule-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .rule-list li {
+        padding: 0.12rem 0;
+      }
+
+      .rule-list li + li {
+        border-top: 1px dashed var(--arm-border);
+      }
+
+      .rule-list a {
+        color: var(--arm-primary);
+        text-decoration: none;
+      }
+
+      .rule-list a:hover {
+        text-decoration: underline;
+      }
+
+      .rule-count {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        color: var(--arm-text-muted);
+        background: var(--arm-surface-2);
+        border: 1px solid var(--arm-border);
+        border-radius: 999px;
+        padding: 0 0.5rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .rule-empty {
+        color: var(--arm-text-muted);
+        font-size: 0.82rem;
+      }
+
+      /* Table footer: info + length + paging */
+      .arm-tablefoot {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+        font-size: 0.84rem;
+        color: var(--arm-text-muted);
+      }
+
+      .arm-tablefoot .dt-info,
+      .arm-tablefoot div.dataTables_info {
+        padding: 0;
+        margin-right: auto;
+        color: var(--arm-text-muted);
+      }
+
+      .arm-tablefoot .dt-length select,
+      .arm-tablefoot div.dataTables_length select {
+        background-color: var(--arm-surface-2);
+        border: 1px solid var(--arm-border);
+        color: var(--arm-text);
+        border-radius: 6px;
+      }
+
+      .arm-tablefoot .pagination {
+        margin: 0;
+        --bs-pagination-bg: transparent;
+        --bs-pagination-border-color: var(--arm-border);
+        --bs-pagination-color: var(--arm-text);
+        --bs-pagination-hover-bg: var(--arm-surface-2);
+        --bs-pagination-hover-color: var(--arm-text);
+        --bs-pagination-focus-bg: var(--arm-surface-2);
+        --bs-pagination-focus-color: var(--arm-text);
+        --bs-pagination-active-bg: var(--arm-primary);
+        --bs-pagination-active-border-color: var(--arm-primary);
+        --bs-pagination-disabled-bg: transparent;
+        --bs-pagination-disabled-color: var(--arm-text-muted);
+        --bs-pagination-disabled-border-color: var(--arm-border);
+      }
+
+      /* ============================================================
+         Footer + scroll-to-top
+         ============================================================ */
+      .site-footer {
+        color: var(--arm-text-muted);
+        font-size: 0.82rem;
+      }
+
+      .site-footer a {
+        color: var(--arm-primary);
+        text-decoration: none;
+      }
+
+      .site-footer a:hover {
+        text-decoration: underline;
       }
 
       #scrollToTopBtn {
-        display: none;
         position: fixed;
-        bottom: 20px;
-        right: 20px;
-        border-radius: 50%;
-        background-color: #3f6894;
-        opacity: 0.7;
-        width: 7 0px;
-        height: 7 0px;
-        display: flex;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        z-index: 1050;
+        width: 44px;
+        height: 44px;
+        display: none;
         align-items: center;
         justify-content: center;
-        z-index: 1000;
+        border: 1px solid var(--arm-border);
+        border-radius: 50%;
+        background: var(--arm-surface);
+        color: var(--arm-text);
+        box-shadow: var(--arm-shadow);
         cursor: pointer;
-        transition: opacity 0.3s ease;
+        transition: background-color 0.2s ease;
       }
 
       #scrollToTopBtn:hover {
-        opacity: 1;
+        background: var(--arm-primary);
+        border-color: var(--arm-primary);
+        color: #fff;
       }
 
-      svg {
-        color: white;
-      }
+      /* ============================================================
+         Responsive
+         ============================================================ */
+      @media (max-width: 767.98px) {
+        .brand-title {
+          font-size: 1.2rem;
+        }
 
-      #theme-icons svg:hover,
-      #github-icon:hover {
-        scale: 1.15;
-      }
+        .updated-chip {
+          display: none;
+        }
 
-      #theme-icons svg,
-      #github-icon {
-        transition: 0.3s;
+        .table-card {
+          padding: 0.75rem 0.75rem 0.25rem;
+        }
+
+        .arm-toolbar-right {
+          max-width: none;
+        }
       }
     </style>
   </head>
   <body>
-    <div id="main" class="container-fluid p-4">
-      <div id="header" class="d-flex align-items-center">
+    <a class="skip-link" href="#arm-table">Skip to the mapping table</a>
+
+    <header class="site-header py-3 mb-3">
+      <div class="container-xxl d-flex align-items-center gap-3">
         <img
-          class="me-3"
           src="./assets/images/shield-logo.png"
-          alt=""
-          height="65"
+          alt="AttackRuleMap logo"
+          height="52"
+          width="52"
         />
-        <div id="header">
-          <h2 class="text-start m-0 p-0">AttackRuleMap</h2>
-          <p class="text-start text-muted m-0 p-0">
-            Mapping of open-source detection rules and atomic tests.
+        <div class="me-auto">
+          <h1 class="brand-title">AttackRuleMap</h1>
+          <p class="brand-tagline">
+            Atomic Red Team tests mapped to open-source detection rules
           </p>
         </div>
-        <div class="ms-auto d-flex flex-column align-items-center">
-          <!-- Top: GitHub ve theme buttons -->
-          <div class="d-flex justify-content-end align-items-center w-100">
-            <a
-              href="https://github.com/krdmnbrk/AttackRuleMap"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="me-3"
-            >
-              <img
-                id="github-icon"
-                src="./assets/images/github-logo.svg"
-                alt="GitHub Logo"
-                height="25"
-              />
-            </a>
-            <div id="theme-icons" class="d-flex align-items-center">
-              <svg
-                id="light-mode-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                class="bi bi-brightness-high"
-                style="display: none"
-              >
-                <path
-                  d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"
-                />
+        <span class="updated-chip" id="last-updated-date" title="Last updated">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+          </svg>
+          <span>Updated: —</span>
+        </span>
+        <a
+          class="header-action"
+          href="https://github.com/krdmnbrk/AttackRuleMap"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View the project on GitHub"
+          title="GitHub repository"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+          </svg>
+        </a>
+        <button
+          class="header-action"
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+          title="Toggle light / dark theme"
+        >
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="container-xxl pb-4">
+      <!-- Stats -->
+      <div class="row g-2 g-md-3 mb-3" id="stats-row" hidden>
+        <div class="col-6 col-lg-3">
+          <div class="stat-tile">
+            <span class="stat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
               </svg>
-              <svg
-                id="dark-mode-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                class="bi bi-moon"
-              >
-                <path
-                  d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"
-                />
-              </svg>
+            </span>
+            <div>
+              <div class="stat-value" id="stat-mappings">—</div>
+              <div class="stat-label">Atomic Tests</div>
             </div>
           </div>
-          <!-- Bottom Last updated (loaded from metadata.json) -->
-          <div class="text-center mt-2">
-            <span id="last-updated-date" style="user-select: none">Last Updated Date: —</span>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-tile">
+            <span class="stat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+                <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8"/>
+                <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+              </svg>
+            </span>
+            <div>
+              <div class="stat-value" id="stat-techniques">—</div>
+              <div class="stat-label">ATT&amp;CK Techniques</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-tile">
+            <span class="stat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/>
+                <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+              </svg>
+            </span>
+            <div>
+              <div class="stat-value" id="stat-sigma">—</div>
+              <div class="stat-label">Sigma Rule Matches</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-tile">
+            <span class="stat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
+              </svg>
+            </span>
+            <div>
+              <div class="stat-value" id="stat-splunk">—</div>
+              <div class="stat-label">Splunk Rule Matches</div>
+            </div>
           </div>
         </div>
       </div>
-      <hr />
-      <table id="arm-table" class="table table-striped" style="width: 100%">
-        <thead>
-          <tr>
-            <th style="width: 5%">Tech ID</th>
-            <th style="width: 25%">
-              <img src="./assets/images/atomic-logo.png" alt="" height="25" />
-              <span class="ps-1">Atomic Attack Name</span>
-            </th>
-            <th style="width: 5%">Platform</th>
-            <th style="width: 30%">
-              <img
-                src="./assets/images/sigma-logo.svg"
-                alt="sigma"
-                height="25"
-              />
-              <span class="ps-1">Sigma Rules</span>
-            </th>
-            <th style="width: 30%">
-              <img
-                style="border-radius: 10%"
-                src="./assets/images/splunk-logo.png"
-                alt="splunk"
-                height="25"
-              />
-              <span class="ps-1">Splunk Rules</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
 
-      <div id="scrollToTopBtn" style="display: none">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
-          fill="currentColor"
-          class="bi bi-arrow-up-circle"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"
-          />
-        </svg>
+      <!-- Table -->
+      <div class="table-card">
+        <table id="arm-table" class="table table-hover align-middle" style="width: 100%">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 8%">Tech ID</th>
+              <th scope="col" style="width: 26%">
+                <img src="./assets/images/atomic-logo.png" alt="" height="22" />
+                <span class="ps-1">Atomic Attack</span>
+              </th>
+              <th scope="col" style="width: 11%">Platform</th>
+              <th scope="col" style="width: 27.5%">
+                <img src="./assets/images/sigma-logo.svg" alt="" height="20" />
+                <span class="ps-1">Sigma Rules</span>
+              </th>
+              <th scope="col" style="width: 27.5%">
+                <img
+                  style="border-radius: 10%"
+                  src="./assets/images/splunk-logo.png"
+                  alt=""
+                  height="20"
+                />
+                <span class="ps-1">Splunk Rules</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-    </div>
+
+      <footer class="site-footer d-flex flex-wrap gap-2 align-items-center justify-content-between mt-3">
+        <span>
+          AttackRuleMap — mapping
+          <a href="https://www.atomicredteam.io" target="_blank" rel="noopener noreferrer">Atomic Red Team</a>
+          tests to
+          <a href="https://github.com/SigmaHQ/sigma" target="_blank" rel="noopener noreferrer">Sigma</a>
+          and
+          <a href="https://research.splunk.com" target="_blank" rel="noopener noreferrer">Splunk ESCU</a>
+          detections.
+        </span>
+        <span>
+          MIT License ·
+          <a href="https://github.com/krdmnbrk/AttackRuleMap" target="_blank" rel="noopener noreferrer">Contribute on GitHub</a>
+        </span>
+      </footer>
+    </main>
+
+    <button id="scrollToTopBtn" type="button" aria-label="Scroll back to top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+      </svg>
+    </button>
 
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
@@ -250,7 +838,25 @@
 
     <script>
       $(document).ready(function () {
-        // Load last updated from metadata.json (same directory)
+        var escapeHtml = function (value) {
+          return $("<div>").text(value == null ? "" : String(value)).html();
+        };
+
+        var normalizePlatform = function (raw) {
+          var p = (raw || "").toString().trim().toLowerCase();
+          if (p.indexOf("windows") >= 0) return "Windows";
+          if (p.indexOf("mac") >= 0) return "macOS";
+          if (p.indexOf("linux") >= 0) return "Linux";
+          return raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : "";
+        };
+
+        var platformIcons = {
+          Windows: "windows-logo.svg",
+          macOS: "macos-logo.svg",
+          Linux: "linux-logo.svg",
+        };
+
+        // Last updated (metadata.json lives in the same directory)
         $.getJSON("metadata.json")
           .done(function (data) {
             var raw = data && data.last_updated ? data.last_updated : "";
@@ -258,150 +864,194 @@
             if (raw) {
               var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
               var m = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
-              if (m) {
-                display = months[parseInt(m[2], 10) - 1] + " " + parseInt(m[3], 10) + ", " + m[1];
-              } else {
-                display = raw;
-              }
+              display = m
+                ? months[parseInt(m[2], 10) - 1] + " " + parseInt(m[3], 10) + ", " + m[1]
+                : raw;
             }
-            $("#last-updated-date").text("Last Updated Date: " + display);
+            $("#last-updated-date span").text("Updated: " + display);
           })
           .fail(function () {
-            $("#last-updated-date").text("Last Updated Date: —");
+            $("#last-updated-date span").text("Updated: —");
           });
 
-        $("#arm-table").DataTable({
+        var renderRuleList = function (rules) {
+          rules = rules || [];
+          if (!rules.length) {
+            return '<span class="rule-empty">No rules</span>';
+          }
+          var html = "";
+          if (rules.length > 1) {
+            html += '<span class="rule-count">' + rules.length + " rules</span>";
+          }
+          html += '<ul class="rule-list">';
+          rules.forEach(function (r) {
+            var name = escapeHtml((r.rule_name || "").trim() || "Unnamed rule");
+            var link = escapeHtml(r.rule_link || "#");
+            html +=
+              '<li><a target="_blank" rel="noopener noreferrer" href="' +
+              link + '">' + name + "</a></li>";
+          });
+          html += "</ul>";
+          return html;
+        };
+
+        var computeStats = function (rows) {
+          var techs = {};
+          var sigma = 0;
+          var splunk = 0;
+          var platformCounts = {};
+          rows.forEach(function (row) {
+            var tid = row.tech_id || row.technique_id;
+            if (tid) techs[tid] = true;
+            sigma += (row.sigma_rules || []).length;
+            splunk += (row.splunk_rules || []).length;
+            var plat = normalizePlatform(row.platform);
+            if (plat) platformCounts[plat] = (platformCounts[plat] || 0) + 1;
+          });
+          var fmt = function (n) {
+            return n.toLocaleString("en-US");
+          };
+          $("#stat-mappings").text(fmt(rows.length));
+          $("#stat-techniques").text(Object.keys(techs).length);
+          $("#stat-sigma").text(fmt(sigma));
+          $("#stat-splunk").text(fmt(splunk));
+          $("#stats-row").prop("hidden", false);
+          return platformCounts;
+        };
+
+        var platformCounts = {};
+
+        var table = $("#arm-table").DataTable({
           ajax: {
             url: "attack_rule_map.json",
-            dataSrc: "",
+            dataSrc: function (json) {
+              platformCounts = computeStats(json || []);
+              return json || [];
+            },
           },
           columns: [
             {
               data: function (row) {
-                const v = row.tech_id || row.technique_id;
-                return v != null && String(v).trim() !== "" ? String(v) : null;
+                var v = row.tech_id || row.technique_id;
+                return v != null && String(v).trim() !== "" ? String(v).trim() : "";
               },
-              render: function (data) {
-                const tid = (data != null && String(data).trim() !== "") ? String(data).trim() : null;
-                if (!tid) {
-                  return '<span class="text-muted">-</span>';
-                }
-                const href =
+              render: function (data, type) {
+                if (type !== "display") return data;
+                if (!data) return '<span class="rule-empty">—</span>';
+                var tid = escapeHtml(data);
+                var href =
                   "https://www.atomicredteam.io/atomic-red-team/atomics/" + tid;
                 return (
-                  '<a class="btn mitre-tech-btn rounded-1" style="user-select: text;" target="_blank" href="' +
-                  href +
-                  '">' +
-                  tid +
-                  "</a>"
+                  '<a class="tech-chip" target="_blank" rel="noopener noreferrer" href="' +
+                  href + '" title="View ' + tid + " atomics on atomicredteam.io\">" +
+                  tid + "</a>"
                 );
               },
             },
             {
               data: function (row) {
-                const name = (row.atomic_attack_name || row.technique_name || "").trim();
-                const guid = (row.atomic_attack_guid || "").trim();
-                return { name: name, guid: guid };
+                return (row.atomic_attack_name || row.technique_name || "").trim();
               },
-              render: function (data) {
-                const displayName = (data && data.name) ? String(data.name).trim() : "";
-                const isUnknown = !displayName || displayName.toLowerCase() === "unknown";
-                if (isUnknown) {
-                  return '<span class="text-muted">-</span>';
+              render: function (data, type, row) {
+                if (type !== "display") {
+                  return data + " " + (row.atomic_attack_guid || "");
                 }
-                let html = displayName;
-                if (data && data.guid) {
-                  html += '<br><small class="text-muted">GUID: ' + data.guid + "</small>";
+                var isUnknown = !data || data.toLowerCase() === "unknown";
+                if (isUnknown) return '<span class="rule-empty">—</span>';
+                var html = '<span class="attack-name">' + escapeHtml(data) + "</span>";
+                var guid = (row.atomic_attack_guid || "").trim();
+                if (guid) {
+                  html +=
+                    '<span class="attack-guid" title="Atomic test GUID">' +
+                    escapeHtml(guid) + "</span>";
                 }
                 return html;
               },
             },
             {
-              data: "platform",
-              render: function (data) {
-                const plat = (data || "").toString().toLowerCase();
-                let img = "linux-logo.svg";
-                let title = "Linux";
-                if (plat.indexOf("windows") >= 0) {
-                  img = "windows-logo.svg";
-                  title = "Windows";
-                } else if (plat.indexOf("macos") >= 0 || plat.indexOf("mac") >= 0) {
-                  img = "macos-logo.svg";
-                  title = "macOS";
-                } else if (plat) {
-                  title = plat.charAt(0).toUpperCase() + plat.slice(1);
+              data: function (row) {
+                return normalizePlatform(row.platform);
+              },
+              render: function (data, type) {
+                if (type !== "display") return data;
+                if (!data) return '<span class="rule-empty">—</span>';
+                var icon = platformIcons[data];
+                var label = escapeHtml(data);
+                var html = '<span class="platform-cell">';
+                if (icon) {
+                  html +=
+                    '<img src="./assets/images/' + icon + '" alt="" loading="lazy" />';
                 }
-                return (
-                  '<img src="./assets/images/' +
-                  img +
-                  '" height="32" alt="' +
-                  title +
-                  '" title="' +
-                  title +
-                  '">'
-                );
+                html += "<span>" + label + "</span></span>";
+                return html;
               },
             },
             {
               data: "sigma_rules",
-              render: function (data) {
-                const rules = data || [];
-                if (!rules.length) return "<ul>N/A</ul>";
-                let html = "<ul>";
-                rules.forEach(function (r) {
-                  const name = (r.rule_name || "").trim();
-                  const link = r.rule_link || "#";
-                  html +=
-                    '<li><a target="_blank" href="' +
-                    link +
-                    '">' +
-                    name +
-                    "</a></li>";
-                });
-                html += "</ul>";
-                return html;
+              orderable: false,
+              render: function (data, type) {
+                if (type !== "display") {
+                  return (data || [])
+                    .map(function (r) {
+                      return r.rule_name || "";
+                    })
+                    .join(" ");
+                }
+                return renderRuleList(data);
               },
             },
             {
               data: "splunk_rules",
-              render: function (data) {
-                const rules = data || [];
-                if (!rules.length) return "<ul>N/A</ul>";
-                let html = "<ul>";
-                rules.forEach(function (r) {
-                  const name = (r.rule_name || "").trim();
-                  const link = r.rule_link || "#";
-                  html +=
-                    '<li><a target="_blank" href="' +
-                    link +
-                    '">' +
-                    name +
-                    "</a></li>";
-                });
-                html += "</ul>";
-                return html;
+              orderable: false,
+              render: function (data, type) {
+                if (type !== "display") {
+                  return (data || [])
+                    .map(function (r) {
+                      return r.rule_name || "";
+                    })
+                    .join(" ");
+                }
+                return renderRuleList(data);
               },
             },
           ],
-          paging: false,
+          deferRender: true,
+          paging: true,
+          pageLength: 50,
+          lengthMenu: [
+            [25, 50, 100, -1],
+            [25, 50, 100, "All"],
+          ],
+          order: [[0, "asc"]],
           searching: true,
-          ordering: true,
           info: true,
           fixedHeader: true,
+          language: {
+            info: "Showing _START_–_END_ of _TOTAL_ mappings",
+            infoFiltered: "(filtered from _MAX_)",
+            infoEmpty: "No mappings found",
+            zeroRecords:
+              "No mappings match your search. Try a technique ID (e.g. T1046) or a rule name.",
+            lengthMenu: "_MENU_ per page",
+            search: "",
+          },
           dom:
-            "<'row'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-
+            "<'arm-toolbar'<'arm-toolbar-left'B<'arm-filters'>><'arm-toolbar-right'f>>" +
+            "<'table-responsive'tr>" +
+            "<'arm-tablefoot'<'dt-foot-info'i><'dt-foot-length'l><'dt-foot-paging'p>>",
           buttons: [
             {
-              className: "btn-sm json-export",
-              text: "Export JSON",
-              action: function (e, dt, button, config) {
-                const rows = dt.rows({ search: "applied" }).data();
-                const json = JSON.stringify(
+              className: "btn-arm-export",
+              text:
+                '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">' +
+                '<path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>' +
+                '<path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>' +
+                "</svg> Export JSON",
+              action: function (e, dt) {
+                var rows = dt.rows({ search: "applied" }).data();
+                var json = JSON.stringify(
                   rows.toArray().map(function (row) {
-                    const obj = {
+                    return {
                       tech_id: row.tech_id || row.technique_id || "",
                       atomic_attack_name:
                         row.atomic_attack_name || row.technique_name || "",
@@ -410,26 +1060,33 @@
                       sigma_rules: row.sigma_rules || [],
                       splunk_rules: row.splunk_rules || [],
                     };
-                    return obj;
                   }),
                   null,
                   2
                 );
-
-                const blob = new Blob([json], { type: "application/json" });
-                const link = document.createElement("a");
+                var blob = new Blob([json], { type: "application/json" });
+                var link = document.createElement("a");
                 link.href = URL.createObjectURL(blob);
                 link.download = "attack_rule_map.json";
                 link.click();
+                URL.revokeObjectURL(link.href);
               },
             },
           ],
           initComplete: function () {
+            var api = this.api();
+
+            // Search placeholder
+            $(".dt-search input, div.dataTables_filter input")
+              .attr("placeholder", "Search techniques, rules, GUIDs…")
+              .attr("aria-label", "Search the mapping table");
+
+            // ATT&CK Navigator dropdown
             var openLayer = function (filename) {
               var hostname = window.location.hostname;
               if (hostname === "localhost" || hostname === "127.0.0.1") {
                 alert(
-                  "The official MITRE ATT&CK Navigator cannot access files on Localhost. Please deploy to Netlify/Public Server."
+                  "The official MITRE ATT&CK Navigator cannot access files on localhost. Please deploy to a public server."
                 );
                 return;
               }
@@ -438,77 +1095,118 @@
                 window.location.href.lastIndexOf("/") + 1
               );
               var jsonUrl = currentBase + filename;
-              var targetUrl =
+              window.open(
                 "https://mitre-attack.github.io/attack-navigator/#layerURL=" +
-                encodeURIComponent(jsonUrl);
-              window.open(targetUrl, "_blank");
+                  encodeURIComponent(jsonUrl),
+                "_blank"
+              );
             };
+
+            var svgMap =
+              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/></svg>';
+            var svgLayers =
+              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0zM8 9.433 1.562 6 8 2.567 14.438 6z"/></svg>';
+            var svgShield =
+              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/></svg>';
+            var svgChart =
+              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/></svg>';
+
             var $mitreGroup = $(
-              '<div class="btn-group ms-2 ml-2" role="group">' +
-                '<button type="button" class="btn btn-danger btn-sm text-white dropdown-toggle" data-bs-toggle="dropdown" style="font-weight: 500;">' +
-                '<i class="fas fa-map-marked-alt me-1 mr-1"></i> ATT&CK&reg; Navigator <span class="caret"></span>' +
-                '</button>' +
+              '<div class="btn-group" role="group">' +
+                '<button type="button" class="btn btn-navigator dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">' +
+                svgMap +
+                " ATT&CK&reg; Navigator" +
+                "</button>" +
                 '<ul class="dropdown-menu">' +
-                '<li><a class="dropdown-item" href="#" data-layer="mitre_layer_combined.json"><i class="fas fa-layer-group me-1"></i> Sigma + Splunk</a></li>' +
-                '<li><a class="dropdown-item" href="#" data-layer="mitre_layer_sigma.json"><i class="fas fa-shield-alt me-1"></i> Sigma</a></li>' +
-                '<li><a class="dropdown-item" href="#" data-layer="mitre_layer_splunk.json"><i class="fas fa-chart-line me-1"></i> Splunk</a></li>' +
-                '</ul></div>'
+                '<li><a class="dropdown-item" href="#" data-layer="mitre_layer_combined.json">' +
+                svgLayers +
+                " Sigma + Splunk</a></li>" +
+                '<li><a class="dropdown-item" href="#" data-layer="mitre_layer_sigma.json">' +
+                svgShield +
+                " Sigma</a></li>" +
+                '<li><a class="dropdown-item" href="#" data-layer="mitre_layer_splunk.json">' +
+                svgChart +
+                " Splunk</a></li>" +
+                "</ul></div>"
             );
             $(".dt-buttons").after($mitreGroup);
             $mitreGroup.find(".dropdown-item").on("click", function (e) {
               e.preventDefault();
-              var filename = $(this).data("layer");
-              openLayer(filename);
+              openLayer($(this).data("layer"));
+            });
+
+            // Platform filter chips
+            var chipDefs = [{ label: "All", value: "" }];
+            ["Windows", "Linux", "macOS"].forEach(function (p) {
+              if (platformCounts[p]) {
+                chipDefs.push({ label: p, value: p, count: platformCounts[p] });
+              }
+            });
+            var $filters = $(".arm-filters").attr({
+              role: "group",
+              "aria-label": "Filter by platform",
+            });
+            chipDefs.forEach(function (def) {
+              var $chip = $(
+                '<button type="button" class="arm-chip' +
+                  (def.value === "" ? " active" : "") +
+                  '" aria-pressed="' +
+                  (def.value === "" ? "true" : "false") +
+                  '"></button>'
+              );
+              $chip.append(document.createTextNode(def.label));
+              if (def.count) {
+                $chip.append(
+                  $('<span class="chip-count"></span>').text(def.count)
+                );
+              }
+              $chip.data("platform", def.value);
+              $filters.append($chip);
+            });
+            $filters.on("click", ".arm-chip", function () {
+              var $btn = $(this);
+              $filters
+                .find(".arm-chip")
+                .removeClass("active")
+                .attr("aria-pressed", "false");
+              $btn.addClass("active").attr("aria-pressed", "true");
+              var value = $btn.data("platform");
+              api
+                .column(2)
+                .search(value ? "^" + value + "$" : "", true, false)
+                .draw();
             });
           },
         });
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme === "light") {
-          $("html").attr("data-bs-theme", "light");
-          toggleIcons();
-        } else {
-          $("html").attr("data-bs-theme", "dark");
-          toggleIcons();
-        }
 
-        $("#dark-mode-icon").click(function () {
-          $("html").attr("data-bs-theme", "dark");
-          localStorage.setItem("theme", "dark");
-          toggleIcons();
+        // Theme toggle
+        $("#theme-toggle").on("click", function () {
+          var next =
+            $("html").attr("data-bs-theme") === "dark" ? "light" : "dark";
+          $("html").attr("data-bs-theme", next);
+          try {
+            localStorage.setItem("theme", next);
+          } catch (e) {}
         });
 
-        $("#light-mode-icon").click(function () {
-          $("html").attr("data-bs-theme", "light");
-          localStorage.setItem("theme", "light");
-          toggleIcons();
-        });
-
-        function toggleIcons() {
-          $(".json-export")
-            .removeClass("btn-secondary")
-            .addClass("btn-success");
-          if ($("html").attr("data-bs-theme") === "dark") {
-            $("#dark-mode-icon").hide();
-            $("#light-mode-icon").show().css("color", "#adb5bd");
-            $("#github-icon").attr("style", "filter: invert(0)");
-          } else {
-            $("#github-icon").attr("style", "filter: invert(1)");
-            $("#light-mode-icon").hide();
-            $("#dark-mode-icon").show().css("color", "#212529");
-          }
-        }
-
-        $(window).scroll(function () {
+        // Scroll to top
+        var $topBtn = $("#scrollToTopBtn");
+        $(window).on("scroll", function () {
           if ($(this).scrollTop() > 300) {
-            $("#scrollToTopBtn").fadeIn();
+            $topBtn.css("display", "flex");
           } else {
-            $("#scrollToTopBtn").fadeOut();
+            $topBtn.hide();
           }
         });
-
-        $("#scrollToTopBtn").click(function () {
-          $("html, body").animate({ scrollTop: 0 });
-          return false;
+        $topBtn.on("click", function () {
+          var reduced = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+          if (reduced) {
+            window.scrollTo(0, 0);
+          } else {
+            $("html, body").animate({ scrollTop: 0 }, 300);
+          }
         });
       });
     </script>
