@@ -89,12 +89,15 @@ class ReportHandler:
                     "enabled": True,
                     "metadata": []
                 })
+            # Linux is aligned to ATT&CK v19 (includes T1685); Navigator won't draw a
+            # technique newer than the layer's attack version. Windows stays on "18".
+            attack_version = "19" if config.PLATFORM == "linux" else "18"
             return {
                 "name": name,
-                "versions": {"attack": "18", "navigator": "5.3.0", "layer": "4.5"},
+                "versions": {"attack": attack_version, "navigator": "5.3.0", "layer": "4.5"},
                 "domain": "enterprise-attack",
                 "description": description,
-                "filters": {"platforms": ["Windows"]},
+                "filters": {"platforms": [config.PLATFORM.capitalize()]},
                 "sorting": 3,
                 "layout": {
                     "layout": "side",
@@ -130,10 +133,13 @@ class ReportHandler:
             except OSError as e:
                 logging.warning("Could not remove legacy mitre_layer.json: %s", e)
 
+        # Only Linux gets a platform-suffixed file (separate artifact); Windows keeps the
+        # original un-suffixed names that index.html loads, so its behaviour is unchanged.
+        suffix = "_linux" if config.PLATFORM == "linux" else ""
         layers_config = [
-            ("mitre_layer_sigma.json", "ARM - Sigma Detection Coverage", "Sigma rule coverage", "sigma"),
-            ("mitre_layer_splunk.json", "ARM - Splunk Detection Coverage", "Splunk/ESCU rule coverage", "splunk"),
-            ("mitre_layer_combined.json", "ARM - Sigma + Splunk Detection Coverage", "Sigma OR Splunk coverage", "combined"),
+            (f"mitre_layer_sigma{suffix}.json", "ARM - Sigma Detection Coverage", "Sigma rule coverage", "sigma"),
+            (f"mitre_layer_splunk{suffix}.json", "ARM - Splunk Detection Coverage", "Splunk/ESCU rule coverage", "splunk"),
+            (f"mitre_layer_combined{suffix}.json", "ARM - Sigma + Splunk Detection Coverage", "Sigma OR Splunk coverage", "combined"),
         ]
 
         output_paths = []
@@ -303,10 +309,13 @@ class ReportHandler:
             json.dump(lite, f, separators=(",", ":"), ensure_ascii=False)
         logging.info("Report saved (smart merge, ultra-lite): %s", path)
 
-        # Write metadata.json in same directory (dist/) for dashboard "Last Updated"
+        # Write metadata for the dashboard "Last Updated". Only Linux gets a
+        # platform-suffixed file so it doesn't overwrite the Windows metadata.json
+        # the site reads (Windows behaviour stays unchanged).
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         metadata = {"last_updated": timestamp}
-        metadata_path = os.path.join(os.path.dirname(path), "metadata.json")
+        metadata_name = "metadata_linux.json" if config.PLATFORM == "linux" else "metadata.json"
+        metadata_path = os.path.join(os.path.dirname(path), metadata_name)
         with open(metadata_path, "w", encoding="utf-8") as f:
             json.dump(metadata, f, indent=2)
         logging.info("Metadata saved: %s", metadata_path)
@@ -324,10 +333,27 @@ class ReportHandler:
             return
 
         total_tests = len(data)
-        detected_tests = sum(
-            1 for t in data
-            if any(r.get("detected") for r in t.get("sigma_rules", []))
-        )
+        # The original counter marks a test as detected only when a Sigma rule
+        # fired, ignoring escu_rules/splunk_rules entirely. ESCU is a rule type
+        # this project also collects and verifies, so a test detected only by an
+        # ESCU rule (e.g. T1016, whose Sigma rule does not fire but whose ESCU
+        # rule does) was wrongly reported as "0 detected" on the console even
+        # though it is recorded in the JSON and the MITRE layers. On Linux we
+        # count a test as detected if a Sigma OR an ESCU rule fired, matching how
+        # generate_mitre_layers already scores coverage. I left the Windows path
+        # exactly as it was, since I cannot run/verify Windows and did not want
+        # to change its console numbers without confirmation.
+        if config.PLATFORM == "linux":
+            detected_tests = sum(
+                1 for t in data
+                if any(r.get("detected") for r in t.get("sigma_rules", []))
+                or any(r.get("detected") for r in (t.get("escu_rules") or t.get("splunk_rules") or []))
+            )
+        else:
+            detected_tests = sum(
+                1 for t in data
+                if any(r.get("detected") for r in t.get("sigma_rules", []))
+            )
         coverage_pct = int(round((detected_tests / total_tests * 100))) if total_tests > 0 else 0
 
         logging.info("Total Atomic Tests: %s", total_tests)

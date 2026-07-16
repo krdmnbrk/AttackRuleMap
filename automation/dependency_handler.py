@@ -6,6 +6,8 @@ from pathlib import Path
 from urllib.parse import urlparse
 import urllib.request
 
+from automation import config
+
 # Define the repositories we depend on
 REPOSITORIES = {
     "sigma": "https://github.com/SigmaHQ/sigma.git",
@@ -108,13 +110,18 @@ def stage_atomic_dependencies_locally(atomic_test: dict, technique_dir: str, cac
         # If PathToAtomicsFolder reference, try to resolve file under repo and stage
         if 'PathToAtomicsFolder' in val:
             rel = val.split('PathToAtomicsFolder', 1)[1].lstrip('/\\')
-            repo_root = Path(technique_dir).parents[2]  # .../dependencies/atomic-red-team/atomics/<Txxxx>
-            full_local = repo_root / rel
+            if config.PLATFORM == "linux":
+                # On Linux the atomics live at config.ATOMIC_TESTS_PATH (.../atomics),
+                # and rel is already "<Txxxx>/src/...". parents[2] would overshoot to
+                # the repos root, so resolve directly under ATOMIC_TESTS_PATH instead.
+                full_local = Path(config.ATOMIC_TESTS_PATH) / rel
+            else:
+                full_local = Path(technique_dir).parents[2] / rel  # .../dependencies/atomic-red-team/atomics/<Txxxx>
             if full_local.exists():
                 staged.append(str(full_local))
             else:
                 # Sometimes ExternalPayloads path is up one level
-                alt = repo_root.parent / rel
+                alt = Path(technique_dir).parents[2].parent / rel
                 if alt.exists():
                     staged.append(str(alt))
 

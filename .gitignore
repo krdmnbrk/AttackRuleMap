@@ -14,3 +14,7 @@ __pycache__/
 *.pyc
 # Logs
 *.log
+# Local scratch/analysis scripts
+_scratch/
+# PR draft docs (not part of the repo)
+PR_MESSAGE.md

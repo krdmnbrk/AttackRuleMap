@@ -7,7 +7,7 @@ import time
 import re
 import paramiko
 from automation import config
-
+import subprocess
 
 def _get_proxmox_ssh_client():
     """
@@ -64,6 +64,8 @@ def _run_proxmox_command(args, check=True):
     args: list of command parts, e.g. ["rollback", "100", "Lab-Ready-v1"]
     Returns (success: bool, stdout: str, stderr: str)
     """
+
+    
     vm_id = config.TARGET_VM_ID
     if not vm_id:
         logging.error("TARGET_VM_ID must be set in .env")
@@ -99,16 +101,25 @@ def _run_proxmox_command(args, check=True):
 
 def get_vm_state():
     """Gets the current state of the VM on Proxmox (running/stopped)."""
-    success, stdout, _ = _run_proxmox_command(["status", config.TARGET_VM_ID], check=False)
-    if not success or not stdout:
+    if config.USE_PROXMOX:  
+        success, stdout, _ = _run_proxmox_command(["status", config.TARGET_VM_ID], check=False)
+        if not success or not stdout:
+            return "unknown"
+        # qm status returns e.g. "status: running" or "status: stopped"
+        match = re.search(r"status:\s*(\w+)", stdout, re.IGNORECASE)
+        if match:
+            return match.group(1).lower()
         return "unknown"
-    # qm status returns e.g. "status: running" or "status: stopped"
-    match = re.search(r"status:\s*(\w+)", stdout, re.IGNORECASE)
-    if match:
-        return match.group(1).lower()
-    return "unknown"
-
-
+    else:
+        result = subprocess.run(["VBoxManage", "showvminfo", config.TARGET_VM_ID, "--machinereadable"],
+                        capture_output=True, text=True)
+        if result.returncode != 0:
+            return "unknown"
+        match = re.search(r'VMState="(\w+)"', result.stdout)
+        if match:
+            return match.group(1).lower()
+        return "unknown"
+    
 def ensure_vm_is_off(timeout_seconds=60):
     """
     Ensures the VM is in a stopped state.
@@ -121,17 +132,23 @@ def ensure_vm_is_off(timeout_seconds=60):
         state = get_vm_state()
         logging.debug("Current VM state: %s", state)
 
-        if state == "stopped":
+        if state == "stopped" or state == "poweroff" or state == "aborted" or state == "saved":
             logging.debug("VM is already stopped.")
             return True
         elif state == "running":
             logging.debug("VM is running. Sending stop command...")
-            success, _, err = _run_proxmox_command(["stop", config.TARGET_VM_ID])
-            if not success:
-                logging.warning(f"Stop command may have failed: {err}")
+            if config.USE_PROXMOX:    
+                success, _, err = _run_proxmox_command(["stop", config.TARGET_VM_ID])
+                if not success:
+                  logging.warning(f"Stop command may have failed: {err}")
+            else:
+                result = subprocess.run(
+                    ["VBoxManage", "controlvm", config.TARGET_VM_ID, "poweroff"],
+                    capture_output=True, text=True)
+                if result.returncode != 0:
+                    logging.warning(f"Stop command may have failed: {result.stderr}")
         else:
             logging.warning(f"VM is in state '{state}'. Waiting...")
-
         time.sleep(5)
 
     logging.error("Failed to get VM into stopped state within the timeout.")
@@ -145,21 +162,30 @@ def revert_to_snapshot():
     if not snapshot or not vm_id:
         logging.error("TARGET_SNAPSHOT and TARGET_VM_ID must be set in .env")
         return False
-
-    logging.debug("Reverting VM %s to snapshot '%s'...", vm_id, snapshot)
-
-    if not ensure_vm_is_off():
-        logging.error("Cannot restore snapshot because VM could not be stopped.")
-        return False
-
-    success, _, err = _run_proxmox_command(["rollback", vm_id, snapshot])
-    if not success:
-        logging.error(f"Snapshot rollback failed: {err}")
-        return False
-
-    logging.debug("Verifying state after snapshot rollback...")
-    return ensure_vm_is_off()
-
+    if config.USE_PROXMOX:
+        logging.debug("Reverting VM %s to snapshot '%s'...", vm_id, snapshot)
+        if not ensure_vm_is_off():
+            logging.error("Cannot restore snapshot because VM could not be stopped.")
+            return False
+        success, _, err = _run_proxmox_command(["rollback", vm_id, snapshot])
+        if not success:
+            logging.error(f"Snapshot rollback failed: {err}")
+            return False
+        logging.debug("Verifying state after snapshot rollback...")
+        return ensure_vm_is_off()
+    else: 
+        logging.debug("Reverting VM %s to snapshot '%s' via VBoxManage...", vm_id, snapshot)
+        if not ensure_vm_is_off():
+            logging.error("Cannot restore snapshot because VM could not be stopped.")
+            return False
+        result = subprocess.run(
+            ["VBoxManage", "snapshot", vm_id, "restore", snapshot],
+            capture_output=True, text=True
+        )
+        if result.returncode != 0:
+            logging.error(f"Snapshot restore failed: {result.stderr}")
+            return False
+        return True
 
 def start_vm():
     """Starts the VM on Proxmox."""
@@ -167,19 +193,27 @@ def start_vm():
     if not vm_id:
         logging.error("TARGET_VM_ID must be set in .env")
         return False
-
-    logging.debug("Starting VM %s...", vm_id)
-    success, _, err = _run_proxmox_command(["start", vm_id])
-    if not success:
-        logging.error(f"Failed to start VM: {err}")
-    return success
-
-
+    if config.USE_PROXMOX:
+        logging.debug("Starting VM %s...", vm_id)
+        success, _, err = _run_proxmox_command(["start", vm_id])
+        if not success:
+            logging.error(f"Failed to start VM: {err}")
+        return success
+    else:
+        logging.debug("Starting VM %s via VBoxManage...", vm_id)
+        result = subprocess.run(
+            ["VBoxManage", "startvm", vm_id, "--type", "headless"],
+            capture_output=True, text=True
+        )
+        if result.returncode != 0:
+            logging.error(f"Failed to start VM: {result.stderr}")
+            return False
+        return True
+    
 def stop_vm():
     """Stops the VM after test case."""
     logging.debug("Stopping VM after test case...")
     return ensure_vm_is_off()
-
 
 def is_vm_ready(timeout_seconds=300):
     """
@@ -193,13 +227,24 @@ def is_vm_ready(timeout_seconds=300):
         try:
             client = paramiko.SSHClient()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            client.connect(
-                hostname=config.VM_HOST,
-                port=22,
-                username=config.VM_USERNAME,
-                password=config.VM_PASSWORD,
-                timeout=10,
-            )
+            if config.VM_SSH_KEY_PATH:
+                client.connect(
+                    hostname=config.VM_HOST,
+                    port=config.VM_SSH_PORT,
+                    username=config.VM_USERNAME,
+                    key_filename=config.VM_SSH_KEY_PATH,
+                    timeout=10,
+                    banner_timeout=30,
+                )
+            else:
+                client.connect(
+                    hostname=config.VM_HOST,
+                    port=config.VM_SSH_PORT,
+                    username=config.VM_USERNAME,
+                    password=config.VM_PASSWORD,
+                    timeout=10,
+                    banner_timeout=30,
+                )
             client.close()
             logging.debug("VM is ready and responding to SSH.")
             return True

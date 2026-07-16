@@ -3,6 +3,7 @@ import glob
 import re
 import logging
 from automation import utils
+from automation import config
 
 SIGMA_BASE_URL = "https://github.com/SigmaHQ/sigma/blob/main/rules/"
 
@@ -16,7 +17,12 @@ def parse_sigma_rule(file_path, rules_base_path):
 
     if not isinstance(rule_content, dict) or not all(k in rule_content for k in ['title', 'detection', 'logsource']):
         return None
+    
+    platform = rule_content.get('logsource', {}).get('product', 'N/A')
 
+    if config.PLATFORM == "linux" and platform != "linux":
+        return None
+    
     attack_tags = []
     if 'tags' in rule_content:
         for tag in rule_content['tags']:
@@ -30,8 +36,6 @@ def parse_sigma_rule(file_path, rules_base_path):
 
     relative_path = os.path.relpath(file_path, start=rules_base_path).replace('\\', '/')
     rule_link = SIGMA_BASE_URL + relative_path
-    
-    platform = rule_content.get('logsource', {}).get('product', 'N/A')
 
     return {
         'filepath': file_path,
